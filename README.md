@@ -2,7 +2,7 @@
 
 ![Swift](https://img.shields.io/badge/Swift-6.0-orange?logo=swift)
 ![Platform](https://img.shields.io/badge/Platform-iOS_17+-lightgrey?logo=apple)
-![License](https://img.shields.io/badge/License-AGPL%2520v3-blue)
+![License](https://img.shields.io/badge/License-AGPL%25v3-blue)
 
 ## 🌟 Overview
 
