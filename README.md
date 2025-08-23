@@ -184,7 +184,7 @@ Installation & Build
 Clone the repository:
 
 bash
-git clone https://github.com/your-username/revilio.git
+git clone https://github.com/KirillSharafutdinov/revilio-ios.git
 cd revilio
 Open the project in Xcode:
 
@@ -279,7 +279,7 @@ Test Community: We express our deepest gratitude to all members of the blind and
 Contact & Contributing
 We welcome questions, feedback, and contributions from the community:
 
-Questions & Issues: If you have questions about the project or encounter any issues, please open an issue in this repository or contact us at [your-email@example.com].
+Questions & Issues: If you have questions about the project or encounter any issues, please open an issue in this repository or contact us at [revilio.ios@gmail.com].
 
 Contributions: While this is primarily a portfolio project, we're open to suggestions and pull requests. Please feel free to create issues to discuss bugs or new features before submitting PRs.
 
