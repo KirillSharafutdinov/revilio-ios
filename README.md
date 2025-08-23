@@ -1,20 +1,20 @@
 # Revilio - Companion for the Blind and Visually Impaired
 
 ![Swift](https://img.shields.io/badge/Swift-6.0-orange?logo=swift)
-![Platform](https://img.shields.io/badge/Platform-iOS_17+-lightgrey?logo=apple)
+![Platform](https://img.shields.io/badge/Platform-iOS_17.6+-lightgrey?logo=apple)
 ![License](https://img.shields.io/badge/License-AGPLv3-blue)
 
 ## 🌟 Overview
 
-Revilio is a powerful iOS application designed to empower blind and visually impaired users. It helps navigate the physical world by finding objects, locating specific text, and reading documents aloud through a sophisticated combination of advanced computer vision, machine learning, and thoughtful accessibility design.
+Revilio is a powerful iOS application designed to empower blind and visually impaired users. It helps navigate the physical world by finding objects, locating specific text, and reading documents and inscriptions aloud through a sophisticated combination of advanced computer vision, machine learning, and thoughtful accessibility design.
 
-**Revilio** — это мощное iOS-приложение, созданное для помощи незрячим и слабовидящим людям. Оно позволяет находить предметы, локализовывать текст и читать документы вслух с помощью продвинутого компьютерного зрения и искусственного интеллекта.
+**Revilio** — это мощное iOS-приложение, созданное для помощи незрячим и слабовидящим людям. Оно позволяет находить предметы или текст, а также читать документы и другие надписи вслух с помощью продвинутого компьютерного зрения и искусственного интеллекта.
 
 **Revilio** 是一款功能强大的 iOS 应用程序，旨在通过先进的计算机视觉和人工智能帮助盲人和视障用户导航他们的环境，查找物体，定位文本和朗读文档。
 
-## 🎥 Demo
+## 🎥 Demo TODO
 
-**Video Demonstration:** [Watch a quick overview of Revilio's core features in action on TODO](https://youtube.com)
+**Video Demonstration:** [Watch a quick overview of Revilio's core features in action on](https://youtube.com)
 
 ### Screenshots TODO
 
@@ -25,7 +25,7 @@ Revilio is a powerful iOS application designed to empower blind and visually imp
 ## ✨ Features
 
 ### 🔍 Object Search
-Speak the name of an item from a vast catalog (80+ COCO objects, 15+ custom items). Revilio will use the device's camera to locate it in your environment and provide intuitive haptic and audio feedback to guide you towards its location.
+Speak the name of an item from a vast catalog (80 COCO objects, 15 custom items). Revilio will use the device's camera to locate it in your environment and provide intuitive haptic and audio feedback to guide you towards its location.
 
 ### 📝 Text Search
 Find a specific word or phrase around you. Speak your query or type it using the accessible keyboard. The app uses real-time OCR to scan the camera feed and guides you with feedback once the text is found.
@@ -70,7 +70,8 @@ Revilio is built with a robust, scalable architecture that emphasizes separation
 
 ### 🔑 Key Architectural Patterns
 - **Reactive State Management:** The entire application state is managed reactively using Combine publishers and subscribers
-- **Dependency Injection:** A lightweight DI system using the `@Inject` property wrapper and Resolver service locator pattern
+- **Dependency Management:** Сentralized dependency management in DependencyContainer
+- **Dependency Injection:** A lightweight DI system using the `@Inject` property wrapper and Resolver service locator pattern for additional dependency controls
 - **State Machines:** Complex feature lifecycles are managed through a custom generic StateMachine implementation
 - **Repository Pattern:** All external dependencies are abstracted through repository protocols
 
@@ -172,28 +173,28 @@ The application carefully manages thread hopping to ensure UI operations always 
 Revilio is designed with simplicity and accessibility in mind. Here's how to use each of the three core features:
 
 ### 🔍 Object Search
-1. Launch the application from your home screen or using a Siri shortcut ("Hey Siri, Revilio find [item name]")
-2. Tap the "Object" button on the main screen or wait for the Siri shortcut to activate the mode
-3. Speak the name of the item you want to find when prompted (e.g., "spoon", "keys", "book")
-4. Point your device's camera toward the area where the item might be located
-5. Follow the haptic and audio feedback cues that intensify as you get closer to the target object
+1. Open Revilio and tap the "Find object" button on the main screen or use a Siri shortcut ("Hey Siri, Revilio find object [object name]")
+2. Speak the name of the item you want to find when prompted (e.g., "spoon", "keys", "book")
+   - You can switch the input method to "List" in settings menu: when you tap the "Find object" button, screen with all supported objects will appear. 
+3. Point your device's camera toward the area where the item might be located
+4. Follow the haptic and audio feedback cues that intensify as camera center get closer to the target object
 
 ### 📝 Text Search
-1. Open Revilio and tap the "Text" button on the main interface
-2. Choose your input method:
-- Speak the text you're looking for when prompted
-- Or tap the keyboard icon to type your search query
-3. Allow the app to process your query (voice recognition may take a few seconds)
-4. Scan your environment with the camera - the app will automatically detect text in view
-5. Receive feedback when your searched text is detected, with guidance toward its location
+1. Open Revilio and tap the "Find text" button on the main screen or use a Siri shortcut ("Hey Siri, Revilio find text -> [text_to_search]")
+2. Speak the text you're looking for
+  - You can switch the input method to "Keyboard" in settings menu: when you tap the "Find text" button, screen with text input field will appear. 
+3. Scan your environment with the camera - the app will automatically detect text in view
+4. Receive feedback when your searched text is detected, with guidance toward its location
 
 ### 📖 Text Reading
 1. Position your device so the camera sees the text you want to read (document, book, sign)
 2. Tap the "Read" button on Revilio's main screen
-3. Wait momentarily for the camera to stabilize and for text detection to complete
+3. Wait momentarily for the camera to stabilize, you will feel haptic signals when the frames capture starts
 4. Listen as the app begins reading the text aloud automatically
-5. Navigate using the previous/next buttons to move between sentences or text blocks if needed
-6. Use the pause/resume button to control the reading flow at your pace
+   - App will detect page with text in center of camera and discard the remaining areas of text, you can toggle this feature to off in settings menu
+6. Navigate using the back/forward buttons to move between sentences if needed
+   - You can switch navigation type to "Lines" in settings menu
+7. Use the pause/resume button and toggle speech speed button to control the reading flow at your pace
 
 ## 📄 License
 
@@ -205,9 +206,8 @@ The complete license text can be found in the [LICENSE](LICENSE) file in the roo
 
 We extend our gratitude to the following projects and communities that made Revilio possible:
 
-- **R.swift:** We use R.swift (MIT License) for safe and convenient resource management throughout the application
-- **YOLO Models:** The object search functionality utilizes computer vision models based on the YOLOv8 and YOLO11 architectures from Ultralytics, distributed under the AGPL-3.0 license. We thank the Ultralytics community for their exceptional work
-- **Test Community:** We express our deepest gratitude to all members of the blind and visually impaired community who tested the application and provided invaluable feedback throughout development
+- **R.swift:** We use R.swift (MIT License) for safe and convenient resource management throughout the application. We thank [mac-cain13](https://github.com/mac-cain13/R.swift) for this library
+- **YOLO Models:** The object search functionality utilizes computer vision models based on the YOLOv8 and YOLO11 architectures from Ultralytics, distributed under the AGPL-3.0 license. We thank the [Ultralytics community](https://github.com/ultralytics/ultralytics) for their exceptional work
 
 ## 📬 Contact & Contributing
 
