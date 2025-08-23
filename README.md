@@ -2,7 +2,7 @@
 
 ![Swift](https://img.shields.io/badge/Swift-6.0-orange?logo=swift)
 ![Platform](https://img.shields.io/badge/Platform-iOS_17+-lightgrey?logo=apple)
-![License](https://img.shields.io/badge/License-AGPL25v3-blue)
+![License](https://img.shields.io/badge/License-AGPLv3-blue)
 
 ## 🌟 Overview
 
@@ -16,7 +16,7 @@ Revilio is a powerful iOS application designed to empower blind and visually imp
 
 **Video Demonstration:** [Watch a quick overview of Revilio's core features in action on TODO](https://youtube.com)
 
-### Screenshots
+### Screenshots TODO
 
 | Main Screen | Item Selection | Text Input | Settings |
 | :---: | :---: | :---: | :---: |
@@ -125,3 +125,96 @@ Revilio employs a sophisticated concurrency model that combines:
 - **Dedicated Queues:** For performance-critical operations like image processing
 
 The application carefully manages thread hopping to ensure UI operations always happen on the main thread while keeping heavy processing off the main thread.
+
+## 📋 Requirements
+
+- **Xcode:** 15.0 or later
+- **Swift:** 6.0
+- **iOS:** 17.0 or later
+- **Device:** Physical iPhone with A12 Bionic chip or newer (Neural Engine required for optimal performance)
+- **Dependencies:**
+  - R.swift for resource management (managed via Swift Package Manager)
+  - YOLOv8 and YOLO11 models from Ultralytics (included in repository)
+
+## 🛠️ Installation & Build
+
+1. **Clone the repository:**
+
+   git clone https://github.com/KirillSharafutdinov/revilio-ios.git
+   cd revilio
+
+2. **Open the project in Xcode:**
+   
+   open Revilio.xcodeproj
+
+3. **Configure code signing:**
+- Select your development team in the "Signing & Capabilities" tab of the main target
+- Ensure the bundle identifier is unique to avoid conflicts
+
+4. **Install dependencies:**
+- The project uses Swift Package Manager for dependencies
+- Xcode should automatically resolve and download packages on opening
+
+5. **Build and run:**
+- Select your physical iOS device as the build target (simulator won't work for camera features)
+- Press ⌘R to build and run the application
+
+6. **Grant permissions:**
+- On first launch, grant necessary permissions for:
+  - Camera access
+  - Microphone access (for speech recognition)
+  - Speech recognition
+
+> **Note:** The included ML models (YOLOv8, YOLO11) may need to be processed by Xcode on first build, which can take several minutes depending on your machine's performance.
+
+## 📱 How to Use
+
+Revilio is designed with simplicity and accessibility in mind. Here's how to use each of the three core features:
+
+### 🔍 Object Search
+1. Launch the application from your home screen or using a Siri shortcut ("Hey Siri, Revilio find [item name]")
+2. Tap the "Object" button on the main screen or wait for the Siri shortcut to activate the mode
+3. Speak the name of the item you want to find when prompted (e.g., "spoon", "keys", "book")
+4. Point your device's camera toward the area where the item might be located
+5. Follow the haptic and audio feedback cues that intensify as you get closer to the target object
+
+### 📝 Text Search
+1. Open Revilio and tap the "Text" button on the main interface
+2. Choose your input method:
+- Speak the text you're looking for when prompted
+- Or tap the keyboard icon to type your search query
+3. Allow the app to process your query (voice recognition may take a few seconds)
+4. Scan your environment with the camera - the app will automatically detect text in view
+5. Receive feedback when your searched text is detected, with guidance toward its location
+
+### 📖 Text Reading
+1. Position your device so the camera sees the text you want to read (document, book, sign)
+2. Tap the "Read" button on Revilio's main screen
+3. Wait momentarily for the camera to stabilize and for text detection to complete
+4. Listen as the app begins reading the text aloud automatically
+5. Navigate using the previous/next buttons to move between sentences or text blocks if needed
+6. Use the pause/resume button to control the reading flow at your pace
+
+## 📄 License
+
+This project is licensed under the **GNU Affero General Public License v3.0 (AGPL-3.0)**. This means that any derivative works or services using this code must also be open source and distributed under the same license.
+
+The complete license text can be found in the [LICENSE](LICENSE) file in the root of this repository.
+
+## 🙏 Acknowledgements
+
+We extend our gratitude to the following projects and communities that made Revilio possible:
+
+- **R.swift:** We use R.swift (MIT License) for safe and convenient resource management throughout the application
+- **YOLO Models:** The object search functionality utilizes computer vision models based on the YOLOv8 and YOLO11 architectures from Ultralytics, distributed under the AGPL-3.0 license. We thank the Ultralytics community for their exceptional work
+- **Test Community:** We express our deepest gratitude to all members of the blind and visually impaired community who tested the application and provided invaluable feedback throughout development
+
+## 📬 Contact & Contributing
+
+We welcome questions, feedback, and contributions from the community:
+
+- **Questions & Issues:** If you have questions about the project or encounter any issues, please open an issue in this repository or contact us at [revilio.ios@gmail.com](mailto:revilio.ios@gmail.com)
+- **Contributions:** While this is primarily a portfolio project, we're open to suggestions and pull requests. Please feel free to create issues to discuss bugs or new features before submitting PRs
+- **Accessibility Testing:** We particularly welcome feedback from blind and visually impaired users to help us improve the accessibility features of Revilio
+
+We believe in the open-source philosophy of collaboration and continuous improvement, and we appreciate your interest in making Revilio better for everyone.
