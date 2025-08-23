@@ -1,0 +1,18 @@
+
+/* ItemList strings */
+"title" = "OBJECTS LIST";
+"searchPlaceholder" = "SEARCH OBJECTS";
+"close" = "CLOSE";
+"errorTitle" = "ERROR";
+"errorMessage" = "FAILED TO LOAD OBJECTS. PLEASE TRY AGAIN.";
+"retry" = "RETRY";
+
+// accessibility
+"accessibilityEmptyList" = "List is empty";
+"accessibilityScrollStatus" = "%d of %d";
+
+"accessibilityTitleHint" = "Screen for selecting an object to search from the list of application-supported objects";
+"accessibilityCloseHint" = "Close the object selection screen from the list";
+"accessibilityItemsList" = "List of objects";
+"accessibilitySearchField" = "Object search";
+"accessibilitySearchFieldHint" = "Enter part of the object name to filter the list of objects";

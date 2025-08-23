@@ -1,0 +1,28 @@
+/* Main TextInput UI elements */
+"title" = "文本输入";
+"searchButton" = "搜索";  
+"close" = "关闭";
+"placeholder" = "输入要搜索的文本";
+"noRecentSearches" = "没有最近的搜索";
+"clearHistory" = "清除历史";
+"clearHistoryConfirmTitle" = "清除历史";
+"clearHistoryConfirmMessage" = "您确定要清除所有最近的搜索吗？";
+
+/* Accessibility strings */
+"accessibilitySearchField" = "用于搜索的文本输入字段";
+"accessibilitySearchFieldHint" = "输入要搜索的文本。按回车键进行搜索。";
+"accessibilitySearch" = "搜索";
+"accessibilitySearchHint" = "使用输入的文本执行搜索";
+"accessibilityExitHint" = "关闭搜索文本输入屏幕";
+"accessibilityClearHistory" = "清除历史记录";
+"accessibilityClearHistoryHint" = "删除所有搜索文本历史记录";
+"accessibilityRecentSearch" = "最近搜索：%@";
+"accessibilityRecentSearchHint" = "双击即可使用此搜索";
+"accessibilityHistoryCleared" = "搜索历史记录已清除";
+"accessibilityStartingSearch" = "开始搜索：%@";
+"accessibilityHistoryCleared" = "搜索历史已清除";
+
+
+/* Common strings */
+"commonDelete" = "删除";
+"commonCancel" = "取消"; 

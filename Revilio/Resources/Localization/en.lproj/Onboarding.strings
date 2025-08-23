@@ -1,0 +1,34 @@
+// Onboarding
+"languageTitle" = "Language Selection";
+"languagePrompt" = "Language / Язык / 语言";
+"languageRussian" = "Русский";
+"languageEnglish" = "English";
+"languageChinese" = "中文（简体）";
+
+// Terms Screen
+"back" = "Back";
+"title" = "Terms of Use";
+"agreement" = "I accept the terms of use";
+"continueButton" = "Continue";
+"defaultText" = "Failed to load terms of use. Please check your internet connection and try again.";
+"pageIndicator" = "Page %d of %d";
+
+// Battery Warning Screen
+"batteryWarningTitle" = "Battery consumption and heating risk warning";
+"batteryWarningAgreement" = "I understand the risks of battery consumption and device overheating";
+"batteryWarningContentText" = "Text Search and Object Search features use real-time video processing with Apple Vision and Core ML technologies. These features require intensive computing, which can lead to:
+
+• Significant battery drain
+• Increased device temperature
+• Decreased performance during long-term use
+
+Recommendations for use:
+1. Turn on features only when they are really necessary
+2. Stop the search in a timely manner using the Stop button
+3. Use a charger for long sessions
+4. Take breaks from using the search features
+
+Important advantage: The Pause/Resume button allows you to temporarily stop the search without losing your current settings. During the pause, video processing will be suspended, which will save battery power and reduce the degree of heating of the device. You can immediately resume the search for the previously specified text or object at any time by pressing the button again \"Pause/Resume\".
+
+By checking that you understand the risks of battery drain and device overheating and clicking \"Continue\", you confirm that you understand the risks associated with significant battery consumption and device heating while the application functions are running, and that you understand the recommendations for use";
+

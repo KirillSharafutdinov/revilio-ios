@@ -1,0 +1,17 @@
+/* ItemList strings */
+"title" = "СПИСОК ОБЪЕКТОВ";
+"searchPlaceholder" = "ПОИСК ОБЪЕКТОВ";
+"close" = "ЗАКРЫТЬ";
+"errorTitle" = "ОШИБКА";
+"errorMessage" = "НЕ УДАЛОСЬ ЗАГРУЗИТЬ ОБЪЕКТЫ. ПОПРОБУЙТЕ ЕЩЁ РАЗ.";
+"retry" = "ПОВТОРИТЬ";
+
+// accessibility
+"accessibilityEmptyList" = "Нет элементов";
+"accessibilityScrollStatus" = "%d из %d";
+
+"accessibilityTitleHint" = "Экран выбора объекта для поиска из списка поддерживаемых приложением объектов";
+"accessibilityCloseHint" = "Закрыть экран выбора объекта из списка";
+"accessibilityItemsList" = "Список объектов";
+"accessibilitySearchField" = "Поиск объектов";
+"accessibilitySearchFieldHint" = "Введите часть названия объекта для фильтрации списка объектов";

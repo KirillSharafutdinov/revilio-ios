@@ -1,0 +1,213 @@
+/* About strings */
+"title" = "ABOUT";
+"close" = "Close";
+"closeHint" = "Close \"About\" menu";
+"sectionInfo" = "Application";
+"version" = "Version";
+"build" = "Build";
+"appDestriptionCellTitle" = "Application Features";
+
+"legalSection" = "Legal Information";
+"termsOfUseCellTitle" = "Terms of Use";
+"privacyPolicyCellTitle" = "Privacy Policy";
+"disclaimerCellTitle" = "Disclaimer";
+"disclaimerShortTitle" = "Disclaimer";
+
+"feedbackSection" = "Feedback";
+"feedbackCellTitle" = "Support";
+"feedbackEmail" = "revilio.ios@gmail.com";
+"emailSubject" = "Revilio: ";
+
+"licensesSection" = "Licenses";
+"agplCellTitle" = "AGPL-3.0 License";
+"githubCellTitle" = "Source Code on GitHub";
+"thirdPartyComponentsCellTitle" = "Third-Party Components";
+
+"appDescriptionContentText" = "Revilio is an assistant app designed to increase the independence of visually impaired users. It uses advanced on-device ML and computer vision technologies that work exclusively on your iPhone/iPad, without the need for a network.
+
+Key features:
+
+1. Object search:
+
+- Press the function call button and say the object you are looking for out loud (from the list of supported objects).
+
+- The application will recognize speech, match it with the name of a specific object and start searching for this object in the camera image in real time.
+
+- When an object is detected, it will give tactile (vibration) and sound (synthesized speech) signals indicating the location of the object in the frame relative to the center of the camera. You can change the type of signals in the application settings menu.
+
+- You can change the object selection method in the application settings by specifying a list instead of voice input. In this case, when you call the function, the application will display a menu with a list of all supported objects. The menu allows you to filter the list by entering part of the name of the desired object using the keyboard. Select the desired object from the list and the application will immediately begin searching for it.
+
+- You can activate this feature using Siri commands. Call Siri, say \"Revilio, find object\", Siri will suggest the name of the object. Say the name of one of the supported objects, Siri will open the application and start searching for it. It is recommended to use this command together with the name of the item in one phrase, for example: call Siri, say \"Revilio, find object, spoon\", and app start searching for spoon. Possible command option: \"Revilio, search object\".
+
+2. Text search:
+
+- Press the function call button and say the word or phrase you are looking for out loud.
+
+- The application converts speech into text and starts searching for it among all the text in the camera's field of view.
+
+- When text is detected, it will give tactile (vibration) and sound (synthesized speech) signals indicating the location of the searched text in the frame relative to the center of the camera. You can change the type of signals in the application settings menu.
+
+- You can change the method of entering the searched text in the application settings, specifying the keyboard instead of voice input. In this case, when calling this function, the application will display a menu with an input field and a keyboard. The menu also contains a list with the search history of the last ten words or phrases. Select one of the items from this list, and its text will appear in the input field, or enter the desired text using the keyboard. Click the \"Find\" button on the keyboard or in the upper left corner of the menu, and the application will start searching for text from the input field. Click the \"Clear history\" button above the list with the search history or in the application settings to permanently delete the entire history of searched texts.
+
+- You can activate this feature using Siri commands. Call Siri, say \"Revilio, find text\", Siri will prompt you to say the text you want to find. Say a word or phrase, Siri will open the app and start searching for it. Possible command option: \"Revilio, search text\".
+
+3. Reading text:
+
+- Point the camera at the text and press the function call button.
+
+- The application will recognize the text in the camera frame and start reading it out loud with synthesized speech.
+
+- Playback control: Use the \"FORWARD\" and \"BACK\" buttons on the main screen to go forward and back through the recognized text, the transition step - a sentence or a line, can be selected in the application settings. Use the \"PAUSE\"/\"RESUME\" button to pause and continue reading. Use the \"READING SPEED\" button to select the speech speed of the synthesizer - normal or accelerated.
+
+- Segmentation function: Automatically determines the main text block in the center of the frame (for example, the desired page of a book in a spread), ignoring neighboring ones, to focus on the relevant content. The function can be disabled in the application settings.
+
+- You can activate this feature using Siri commands. Call Siri, say \"Revilio, reading\", Siri will open the app and start the reading function. Possible command option: \"Revilio, read text\".
+
+Additional application features:
+
+- Complete autonomy: all image, video, audio (speech recognition) and data processing occurs exclusively on your device. Data is not saved to disk (except for the local history of Text Search and application settings) and is not transmitted to the network.
+
+- Select a sound source: quiet or loud mode. In order to direct the application sounds to the earphone or headset connected to the device, select the \"Quiet\" mode.
+
+- Pause and resume: During any of the three main functions, press the \"Pause\" button to pause the operation. Press the button again to immediately resume the function. To save the device's battery and protect against overheating, it is recommended to pause or stop the Object Search and Text Search functions whenever they are not currently in use.
+
+- Intuitive control via voice commands and haptic feedback.
+
+- Control the camera zoom using the buttons on the main screen of the application for better recognition of objects or text.
+
+- Use the flashlight (flash) during the main functions to get better results in low light conditions, you can activate this feature in the application settings menu - separately for each of the three main functions.
+
+- Use built-in Apple technologies (Core ML, Vision Framework, Speech, AVFoundation) to provide fast, private and accessible help in everyday tasks.
+
+For more information, use the \"Tutorial\" menu by clicking the corresponding button located in the upper right corner of the main screen of the application. You can enable or disable this button in the application settings";
+
+"termsOfUseContentText" = "Revilio Terms of Use
+
+Last updated: 08/14/2025
+
+1. Acceptance of Terms
+By using the Revilio application (\"Application\"), you (\"User\") confirm that you agree to these Terms, Privacy Policy and Disclaimer.
+
+2. License and Use
+
+2.1. You are permitted to:
+- Install and use the Application on your personal iOS device.
+- Use the Application strictly for personal, non-commercial purposes.
+
+2.2. Open Source: The Application is published under the GNU Affero General Public License version 3.0 (AGPL-3.0). This means:
+- You have the right to study, modify and distribute the source code of the Application.
+- Any distributed modified versions must also be open sourced under the AGPL-3.0 license (including the source code for network services based on them).
+- The full text of the AGPL-3.0 license is available for review.
+
+3. Functionality and Limitations
+
+3.1. The main functions of the application: Search for objects, search for text, read text out loud (local processing on the device).
+
+3.2. Key limitation: All data (video, audio, text) is processed only on your device, without transmission to the Internet.
+
+3.3. Technological limitations:
+- The functions are based on machine learning technologies (Core ML, Vision) and are not infallible. Accuracy depends on conditions (light, camera, scene complexity).
+- The results of the application (sound, vibration and other notifications) are not absolutely reliable. Do not use them as the only source in critical situations!
+
+4. User Responsibility
+
+4.1. Critical Risk Awareness: It is your responsibility to understand the limitations of the App (see Disclaimer).
+
+4.2. Prohibited Uses: DO NOT use the App if an error could result in:
+- Physical harm/injury/death (crossing the street, driving, operating machinery, heights, dangerous areas).
+- Legal, financial or medical consequences (identification of documents, decision making, diagnosis/treatment).
+- Any situation that requires guaranteed accuracy.
+
+4.3. Your Responsibility: Independently assess the safety of your surroundings, double-check the information in the App by other means, comply with laws.
+
+4.4. Non-medical application: Revilio is not intended to diagnose, treat or monitor diseases. If you have health problems, consult a doctor.
+
+5. Access to Camera and Microphone
+
+5.1. Required for the application to function.
+
+5.2. Requested when you first launch the application.
+
+5.3. Data is processed only locally, is not stored permanently (except for local text search history) and is not transferred to the Developer or third parties.
+
+6. Intellectual Property and Reverse Engineering
+
+6.1. The copyright for the Application belongs to the Developer or its licensors.
+
+6.2. Rights to the source code: Granted by the AGPL-3.0 license (see section 2.2). You have the right to:
+- Study and modify the source code.
+- Distribute the original or modified Application strictly under the terms of AGPL-3.0, including mandatory disclosure of the source code of modified versions.
+
+6.3. It is prohibited: Violate the terms of the AGPL-3.0 license when distributing modified versions.
+
+7. Disclaimer of Warranties
+
+The Application is provided \"AS IS\". The Developer expressly disclaims all warranties (including merchantability, fitness for purpose). The developer does not guarantee error-free, uninterrupted or secure operation. You use the Application at your own risk.";
+
+"showTermsOfUsePrivacyPolicyLinkText" = "Privacy Policy";
+"showTermsOfUseDisclaimerLinkText" = "Disclaimer";
+
+"disclaimerContentText" = "Warning about limitations and user liability
+
+Revilio does not guarantee absolute accuracy of results and should not be used in situations with a risk of injury or other harm.
+
+It is critical to understand the following:
+
+1. Limited reliability of artificial neural network technologies
+The results of text, object and other element recognition:
+
+- May contain errors and inaccuracies
+- Are not a substitute for human perception
+- Should not be used as the sole source of information in situations where:
+
+* Error can lead to physical harm
+
+* Requires legally significant identification
+* Misinterpretation creates a danger
+
+* Other similar cases
+The user is fully responsible for verifying the results.
+
+2. User Responsibilities in Assessing Risks
+You are responsible for:
+
+- Understanding the functional limitations of Revilio
+
+- Assessing the terms of use yourself
+
+- Assume all risks of harm to yourself or others
+
+3. No Medical Use
+The application is not intended to detect, diagnose, monitor, or treat medical conditions. If you have any health concerns, please contact a licensed professional immediately.
+
+Terms of Use
+
+By checking the box that you agree to the Terms of Use and clicking \"Continue\", you:
+
+1. Accept the terms of use of Revilio
+2. Confirm that you have read the Privacy Policy
+3. Agree that you are solely responsible for:
+
+- Assessing the suitability of the results for critical tasks
+- Consequences of using the information generated by the application";
+
+"disclaimerPrivacyPolicyLinkText" = "Privacy Policy";
+
+"thirdPartyComponentsContentText" = "The developer of Revilio would like to thank the open-source community for their contributions to the technology.
+
+Revilio uses the following third-party open-source components:
+
+1. R.swift (library):
+- Purpose: Generate type-safe resources for iOS.
+- Source: https://github.com/mac-cain13/R.swift.
+- License: MIT https://github.com/mac-cain13/R.swift/blob/main/License.
+- Thanks: To the developer of R.swift for simplifying work with resources and saving many hours thanks to this library.
+
+2. YOLOv11 (AI model for object detection):
+- Purpose: Detect objects in images.
+- Source: https://github.com/ultralytics.
+- License: GNU Affero General Public License version 3.0 (AGPL-3.0) https://github.com/ultralytics/ultralytics/blob/main/LICENSE.
+- Important: The model is used in accordance with the terms of AGPL-3.0. Model modifications are available in the Revilio source code repository.
+- Acknowledgments: To the Ultralytics team for their contribution to the development of computer vision systems, as well as for providing convenient and functional tools for working with models.";
+
+"thirdPartyComponentsGithubLinkText" = "Revilio source code repository";

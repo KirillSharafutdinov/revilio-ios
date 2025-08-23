@@ -1,0 +1,25 @@
+/* Main TextInput UI elements */
+"title" = "Ввод текста";
+"searchButton" = "ПОИСК";
+"close" = "ЗАКРЫТЬ";
+"placeholder" = "Введите текст для поиска";
+"noRecentSearches" = "НЕТ НЕДАВНИХ ПОИСКОВ";
+"clearHistory" = "ОЧИСТИТЬ ИСТОРИЮ";
+"clearHistoryConfirmTitle" = "ОЧИСТИТЬ ИСТОРИЮ";
+"clearHistoryConfirmMessage" = "Вы уверены, что хотите очистить всю историю ввода поиска текста?";
+
+/* Accessibility strings */
+"accessibilitySearchField" = "Поле поиска";
+"accessibilitySearchFieldHint" = "Экран ввода текста для поиска. Введите текст и нажмите 'Найти' для запуска поиска.";
+"accessibilitySearch" = "Поиск";
+"accessibilitySearchHint" = "Запускает поиск по введенному тексту";
+"accessibilityExitHint" = "Закрывает экран ввода текста для поиска";
+"accessibilityClearHistory" = "Очистить историю";
+"accessibilityClearHistoryHint" = "Удаляет всю историю поисков";
+"accessibilityRecentSearch" = "Недавний поиск: %@";
+"accessibilityRecentSearchHint" = "Двойное нажатие для использования этого запроса";
+"accessibilityHistoryCleared" = "История поиска очищена";
+
+/* Common strings */
+"commonDelete" = "Удалить";
+"commonCancel" = "Отмена";
