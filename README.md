@@ -45,87 +45,290 @@ Launch any core feature hands-free with voice commands via Siri. Just say "Hey S
 ### 🌍 Multi-Language Support
 Fully supported in English, Russian, and Simplified Chinese across the entire stack: user interface, speech recognition, and text-to-speech output.
 
-## 🏗️ Tech Stack & Architecture
+# 🏗️ Architecture & Technical Details
 
-Revilio is built with a robust, scalable architecture that emphasizes separation of concerns, testability, and maintainability. The application follows Clean Architecture principles with clear boundaries between different layers of responsibility.
+## Architecture Overview
 
-### Architecture Overview
-**Clean Architecture Layers:**
-- **Domain Layer:** Contains business logic entities, use cases, and repository protocols
-- **Application Layer:** Coordinates between domain and presentation layers, manages state
-- **Infrastructure Layer:** Concrete implementations of domain protocols and device-specific operations
-- **Presentation Layer:** UIKit-based UI components with accessibility enhancements
+Revilio follows **Clean Architecture** principles with a clear separation of concerns across four distinct layers:
 
-### 🛠️ Core Technologies & Frameworks
-- **Swift 6:** Modern Swift with full concurrency support (async/await)
-- **UIKit:** Primary UI framework with extensive accessibility support
-- **Combine:** Reactive programming throughout the application for state management
-- **Core ML:** Machine learning model inference for object detection
-- **Vision:** Computer vision framework for text recognition and object detection
-- **AVFoundation:** Camera capture, audio session management, and speech synthesis
-- **Speech:** Real-time speech recognition with partial results support
-- **Core Haptics:** Advanced haptic feedback patterns with precise intensity control
-- **Metal Performance Shaders:** GPU-accelerated image processing for real-time performance
-- **AppIntents:** Siri Shortcuts integration and system-level functionality
+### Domain Layer
+- **Core business entities**: `ObjectObservation`, `TextObservation`, `BoundingBox`, `CameraFrame`
+- **Use cases**: `SearchItemUseCase`, `SearchTextUseCase`, `ReadTextUseCase`
+- **Repository protocols**: `CameraRepository`, `ObjectDetectionRepository`, `TextRecognizerRepository`, `SpeechRecognizerRepository`, `SpeechSynthesizerRepository`, `HapticFeedbackRepository`
+- **Platform-agnostic**: Pure Swift with no external dependencies
 
-### 🔑 Key Architectural Patterns
-- **Reactive State Management:** The entire application state is managed reactively using Combine publishers and subscribers
-- **Dependency Management:** Сentralized dependency management in DependencyContainer
-- **Dependency Injection:** A lightweight DI system using the `@Inject` property wrapper and Resolver service locator pattern for additional dependency controls
-- **State Machines:** Complex feature lifecycles are managed through a custom generic StateMachine implementation
-- **Repository Pattern:** All external dependencies are abstracted through repository protocols
+### Application Layer
+- **Coordinators**: `AppModeCoordinator` (state management), `FeatureCoordinator` (feature orchestration)
+- **Services**: `LocalizationManager`, `StopController`, `EventBus`, `FeatureManager`
+- **Dependency management**: `DependencyContainer`, `Resolver` with `@Inject` property wrapper
 
-## 🧩 Key Components & Modules
+### Infrastructure Layer
+- **Framework adapters**: 
+  - `AVCaptureService` (AVFoundation)
+  - `VisionObjectDetectionService` (Vision + Core ML)
+  - `VisionTextRecognizerService` (Vision)
+  - `SFSpeechRecognizerService` (Speech)
+  - `AVSpeechSynthesizerService` (AVFoundation)
+  - `CoreHapticsFeedbackManager` (Core Haptics)
+  - `MPSQualityService` (Metal Performance Shaders)
+- **Platform-specific implementations** of all repository protocols
 
-### Application Coordination
-- **AppModeCoordinator:** Manages high-level application mode transitions (idle, searching, reading)
-- **FeatureCoordinator:** Orchestrates feature-specific workflows and processing state
-- **StopController:** Centralized point for terminating all active features with a single call
+### Presentation Layer
+- **View Models**: `MainViewModel` (reactive UI state management)
+- **View Controllers**: `MainViewController`, `SettingsViewController`, `ItemListViewController`, `TextInputViewController`, ...
+- **Custom Views**: `BoundingBoxView`, `QuadView`
+- **Accessibility**: Comprehensive VoiceOver support and high-contrast UI
 
-### Camera Pipeline
-- **AVCaptureService:** Manages the AVFoundation capture pipeline with Combine and async/await interfaces
-- **CameraStabilityMonitor:** Observes AF/AE convergence using KVO for stable captures
-- **MPSQualityService:** GPU-accelerated frame quality evaluation using Metal Performance Shaders
-- **ContinuousFrameProcessor:** Coordinates the continuous capture loop and frame publishing
+## Reactive State Management
 
-### Computer Vision
-- **VisionObjectDetectionService:** Real-time object detection using Core ML models with configurable thresholds
-- **VisionTextRecognizerService:** OCR implementation using Vision framework with multi-language support
-- **CentralTextClusterDetector:** Smart text block identification using grid-based clustering algorithm
-- **PredictionService:** Handles detection conviction, position smoothing using ring buffers, and prediction history
+The application uses **Combine** framework extensively for reactive programming:
 
-### Speech & Audio
-- **SFSpeechRecognizerService:** Speech recognition with partial results support and timeout handling
-- **AVSpeechSynthesizerService:** Text-to-speech with configurable parameters and audio routing
-- **SharedAudioSessionController:** Coordinates audio session between STT and TTS to prevent conflicts
-- **ItemQueryAcquiring:** Protocols for acquiring user queries through speech or other input methods
+### State Flow
+```swift
+// ViewModel exposes publishers
+var boundingBoxesPublisher: AnyPublisher<[BoundingBox], Never>
+var currentModePublisher: AnyPublisher<AppMode, Never>
+var isSpeakingPublisher: AnyPublisher<Bool, Never>
 
-### Feedback System
-- **CoreHapticsFeedbackManager:** Tactile feedback patterns with intensity control
-- **FeedbackPresenter:** Coordinates haptic and audio feedback based on context and user preferences
-- **FeedbackPolicy:** Strategy pattern for converting detection results into feedback directives
+// Coordinators manage application state
+@Published private(set) var currentMode: AppMode = .idle
+@Published private var buttonStates: [AppMode: MainViewModel.ButtonState]
+```
 
-### Accessibility System
-- **AccessibilityStylable:** Protocol for views that need enhanced accessibility styling
-- Recursive accessibility styling through `applyAccessibilityStyleRecursively()`
-- Configurable feedback types (haptic, audio, or both) based on user preferences
+### Event System
+- **DomainEvent** enum for cross-component communication
+- **EventBus** for centralized event distribution
+- **StopController** for coordinated feature termination
 
-### Infrastructure Services
-- **ItemsForSearchRegistryService:** Centralized registry for all searchable items across ML models
-- **LocalizationManager:** Runtime language switching with persistence in UserDefaults
-- **ThermalThrottlingService:** Monitors device thermal state and provides throttling recommendations
-- **RecentTextSearchesService:** Manages persistent storage of text search history
+## Concurrency Model
 
-## ⚡ Concurrency Model
+Revilio employs a sophisticated hybrid concurrency approach:
 
-Revilio employs a sophisticated concurrency model that combines:
+### Async/Await
+```swift
+// Infrastructure layer uses async/await
+func singleFrame() async -> CameraFrame
+func evaluate(frame: CameraFrame) async -> FrameSharpnessData?
+```
 
-- **Async/Await:** For modern asynchronous operations, especially in the Infrastructure layer
-- **Combine:** For reactive state management and event streaming
-- **OperationBag:** For structured cancellation of asynchronous work
-- **Dedicated Queues:** For performance-critical operations like image processing
+### Combine Integration
+```swift
+// Bridges between async sequences and Combine
+func framePublisher() -> AnyPublisher<CameraFrame, Never> {
+    let subject = PassthroughSubject<CameraFrame, Never>()
+    Task {
+        for await frame in self.frames() {
+            subject.send(frame)
+        }
+        subject.send(completion: .finished)
+    }
+    return subject.eraseToAnyPublisher()
+}
+```
 
-The application carefully manages thread hopping to ensure UI operations always happen on the main thread while keeping heavy processing off the main thread.
+### Structured Concurrency
+- **OperationBag** for structured cancellation
+- **Task coordination** through FeatureLifecycle protocol
+- **Thread management** with dedicated processing queues
+
+## Dependency Injection System
+
+### Service Locator Pattern
+```swift
+// Resolver service locator
+public enum Resolver {
+    private static var registry: [String: Any] = [:]
+    public static func register<T>(_ value: T) {
+        let key = String(describing: T.self)
+        registry[key] = value
+    }
+    public static func resolve<T>(_ type: T.Type) throws -> T
+}
+```
+
+### Property Wrapper Injection
+```swift
+// @Inject property wrapper
+@propertyWrapper public struct Inject<T> {
+    public var wrappedValue: T {
+        do {
+            return try Resolver.resolve(T.self)
+        } catch {
+            // Error handling
+        }
+    }
+}
+
+// Usage in classes
+@Inject var logger: Logger
+@Inject var hapticFeedbackRepository: HapticFeedbackRepository
+```
+
+### Centralized Container
+```swift
+// DependencyContainer manages complex initialization
+class DependencyContainer {
+    private lazy var cameraRepository: CameraRepository = {
+        return AVCaptureService(logger: sharedLogger)
+    }()
+    
+    private lazy var searchItemUseCase: SearchItemUseCase = {
+        return SearchItemUseCase(
+            objectDetectionRepository: objectDetectionRepository,
+            speechRecognizerRepository: speechRecognizerRepository,
+            cameraRepository: cameraRepository,
+            feedbackRepository: objectSearchFeedback,
+            isVoiceOverRunning: UIAccessibility.isVoiceOverRunning,
+            logger: sharedLogger
+        )
+    }()
+}
+```
+
+## Computer Vision Pipeline
+
+### Camera Management
+- **AVCaptureService**: Manages camera lifecycle, zoom, torch control
+- **Frame streaming**: Both Combine publishers and AsyncStream interfaces
+- **Stability monitoring**: `CameraStabilityMonitor` for AF/AE convergence
+
+### Real-time Processing
+```swift
+// Object detection pipeline
+func processFrame(cameraFrame: CameraFrame) {
+    // Convert to CVPixelBuffer
+    // Perform VNImageRequestHandler processing
+    // Convert results to domain objects
+}
+
+// Text recognition pipeline
+func processFrame(cameraFrame: CameraFrame, accuracy: TextRecognitionAccuracy) {
+    // Vision text recognition request
+    // Language configuration based on settings
+    // Results conversion to TextObservation
+}
+```
+
+### Quality Assurance
+- **MPSQualityService**: Metal-accelerated sharpness evaluation
+- **FrameSharpnessData**: Grid-based sharpness analysis (60×60 cells)
+- **Thermal throttling**: `ThermalThrottlingService` for performance management
+
+## Audio & Haptics System
+
+### Speech Recognition
+- **SFSpeechRecognizerService**: Real-time transcription with partial results
+- **Audio session coordination**: `SharedAudioSessionController` for STT/TTS harmony
+- **Multi-language support**: Dynamic language switching
+
+### Speech Synthesis
+```swift
+// AVSpeechSynthesizerService features
+var readingSpeed: ReadingSpeed { get }
+func setReadingSpeed(_ speed: ReadingSpeed)
+func setVoice(for localeId: String)
+var audioOutputRoute: AudioOutputRoute { get }
+```
+
+### Haptic Feedback
+- **CoreHapticsFeedbackManager**: Pattern-based haptics with intensity control
+- **Context-aware patterns**: Different patterns for guidance, success, errors
+- **Accessibility integration**: Configurable feedback types
+
+## Internationalization Architecture
+
+### Runtime Language Switching
+```swift
+// LocalizationManager with dynamic bundle switching
+func set(language: AppLanguage) {
+    currentLanguage = language
+    UserDefaults.standard.set(language.rawValue, forKey: storageKey)
+    activateBundle(for: language)
+    forceUIRefresh()
+}
+```
+
+### Multi-layer Support
+- **UI localization**: Through R.swift and dynamic bundle loading
+- **Speech recognition**: Language configuration for SFSpeechRecognizer
+- **Speech synthesis**: Voice selection based on locale
+- **ML models**: Multi-language object definitions
+
+## Accessibility Implementation
+
+### Comprehensive Support
+- **VoiceOver integration**: Full accessibility labels and hints
+- **Dynamic Type support**: Responsive text sizing
+- **High contrast mode**: Custom accessibility styling
+- **Alternative input**: Multiple input methods (voice, keyboard, list)
+
+### Programmatic Accessibility
+```swift
+// Recursive accessibility styling
+func applyAccessibilityStyleRecursively() {
+    if let button = self as? UIButton {
+        // Apply bold, uppercase, large text styling
+        // High contrast background and border
+    }
+    subviews.forEach { $0.applyAccessibilityStyleRecursively() }
+}
+```
+
+## Siri Shortcuts Integration
+
+### AppIntents Implementation
+```swift
+// Searchable item entities
+struct SearchableItemEntity: AppEntity, Codable {
+    let id: String
+    let modelName: String
+    let classNameInModel: String
+    let displayName: String
+    let alternativeNames: [String]
+}
+
+// Intent definitions
+struct FindItemIntent: AppIntent {
+    @Parameter(title: "Item") var item: SearchableItemEntity
+    func perform() async throws -> some IntentResult
+}
+```
+
+### Deep Linking
+- **Entity resolution**: From Siri queries to application objects
+- **Context preservation**: Seamless transition from Siri to app
+- **Multi-language support**: Intent phrases in all supported languages
+
+## Performance Optimization
+
+### Memory Management
+- **Camera frame handling**: Zero-copy where possible, efficient buffer management
+- **ML model lifecycle**: On-demand loading and unloading
+- **Cancellation support**: Structured task cancellation throughout
+
+### Thermal Management
+- **ThermalThrottlingService**: Monitors device thermal state
+- **Adaptive processing**: Adjusts frame rate and processing intensity
+- **Graceful degradation**: Maintains functionality under constraints
+
+### Battery Efficiency
+- **Smart resource allocation**: Only activate necessary components
+- **Background task management**: Properly handle app state transitions
+- **Efficient ML inference**: Optimized model usage and batch processing
+
+## Testing Architecture
+
+### Protocol-Based Testing
+- **Repository protocols**: Enable mock implementations for testing
+- **Use case isolation**: Test business logic without infrastructure dependencies
+- **View model testing**: Mock use cases and repositories for UI testing
+
+### Debug Infrastructure
+- **Logging system**: Unified logging through Logger protocol
+- **Event bus**: Cross-component communication for debug events
+- **Debug overlays**: Visual debugging tools for bounding boxes and text recognition
+
+This architecture provides a robust foundation for accessibility-focused applications, with particular attention to performance, internationalization, and adaptive interfaces. The clear separation of concerns enables maintainability and testability while the reactive programming model ensures responsive and predictable behavior.
 
 ## 📋 Requirements
 
