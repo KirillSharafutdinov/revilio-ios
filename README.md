@@ -4,13 +4,15 @@
 ![Platform](https://img.shields.io/badge/Platform-iOS_17.6+-lightgrey?logo=apple)
 ![License](https://img.shields.io/badge/License-AGPLv3-blue)
 
-## 🌟 Overview
+> **🚀 Download on the App Store:** [**Get Revelio for iPhone/iPad**](https://apps.apple.com/app/id6571191877)
 
-Revilio is a powerful iOS application designed to empower blind and visually impaired users. It helps navigate the physical world by finding objects, locating specific text, and reading documents and inscriptions aloud through a sophisticated combination of advanced computer vision, machine learning, and thoughtful accessibility design.
+# 🌟 Overview
 
-**Revilio** — это мощное iOS-приложение, созданное для помощи незрячим и слабовидящим людям. Оно позволяет находить предметы или текст, а также читать документы и другие надписи вслух с помощью продвинутого компьютерного зрения и искусственного интеллекта.
+Revilio is an iOS application designed to help blind and visually impaired people. It helps navigate the physical world by finding objects, locating specific text, and reading documents or inscriptions aloud using artificial intelligence. Uses advanced Apple technologies and provides maximum performance on iPhone or iPad
 
-**Revilio** 是一款功能强大的 iOS 应用程序，旨在通过先进的计算机视觉和人工智能帮助盲人和视障用户导航他们的环境，查找物体，定位文本和朗读文档。
+**Revilio** — iOS-приложение, созданное для помощи незрячим и слабовидящим людям. Позволяет находить предметы или текст, а также читать документы и другие надписи вслух с помощью искусственного интеллекта. Использует передовые технологии Apple и обеспечивает максимальную производительность на iPhone или iPad.
+
+**Revilio** 一款 iOS 应用，旨在帮助盲人和视障人士。它利用人工智能查找物体或文本，并大声朗读文档和其他文字。它采用先进的 Apple 技术，可在您的 iPhone 或 iPad 上提供最佳性能。
 
 ## 🎥 Demo TODO
 
@@ -253,12 +255,15 @@ func set(language: AppLanguage) {
 - **UI localization**: Through R.swift and dynamic bundle loading
 - **Speech recognition**: Language configuration for SFSpeechRecognizer
 - **Speech synthesis**: Voice selection based on locale
+- **Text recognition**: VNRecognizeTextRequest.recognitionLanguages and .customWords configuration
 - **ML models**: Multi-language object definitions
 
 ## Accessibility Implementation
 
 ### Comprehensive Support
 - **VoiceOver integration**: Full accessibility labels and hints
+- **Voice feedback for all actions**: Spoken prompts for navigation, settings changes and app state transitions
+- **Tutorial menu**: Training sequence explaining all features and buttons
 - **Dynamic Type support**: Responsive text sizing
 - **High contrast mode**: Custom accessibility styling
 - **Alternative input**: Multiple input methods (voice, keyboard, list)
@@ -277,28 +282,74 @@ func applyAccessibilityStyleRecursively() {
 
 ## Siri Shortcuts Integration
 
-### AppIntents Implementation
-```swift
-// Searchable item entities
-struct SearchableItemEntity: AppEntity, Codable {
-    let id: String
-    let modelName: String
-    let classNameInModel: String
-    let displayName: String
-    let alternativeNames: [String]
-}
-
-// Intent definitions
-struct FindItemIntent: AppIntent {
-    @Parameter(title: "Item") var item: SearchableItemEntity
-    func perform() async throws -> some IntentResult
-}
-```
-
 ### Deep Linking
 - **Entity resolution**: From Siri queries to application objects
 - **Context preservation**: Seamless transition from Siri to app
 - **Multi-language support**: Intent phrases in all supported languages
+
+### AppIntents Implementation
+```swift
+    // Text search shortcut
+    AppShortcut(
+        intent: FindTextIntent(),
+        phrases: [
+            "\(.applicationName) найти текст",
+            "\(.applicationName) найти текст \(\.$query)",
+            "\(.applicationName) искать текст \(\.$query)",
+            "\(.applicationName) поиск текста \(\.$query)",
+            
+            "\(.applicationName) find text",
+            "\(.applicationName) find text \(\.$query)",
+            "\(.applicationName) search text \(\.$query)",
+            
+            "\(.applicationName) 查找文本",
+            "\(.applicationName) 查找文本 \(\.$query)",
+            "\(.applicationName) 搜索文本 \(\.$query)",
+            "\(.applicationName) 文本搜索 \(\.$query)",
+        ],
+        shortTitle: "findTextShortTitle",
+        systemImageName: "text.magnifyingglass"
+    )
+    
+    // Item search shortcut
+    AppShortcut(
+        intent: FindItemIntent(),
+        phrases: [
+            "\(.applicationName) найти объект \(\.$item)",
+            "\(.applicationName) поиск объекта \(\.$item)",
+            "\(.applicationName) искать объект \(\.$item)",
+            
+            "\(.applicationName) find object \(\.$item)",
+            "\(.applicationName) search object \(\.$item)",
+            
+            "\(.applicationName) 查找物体 \(\.$item)",
+            "\(.applicationName) 物体搜索 \(\.$item)",
+            "\(.applicationName) 搜索物体 \(\.$item)",
+        ],
+        shortTitle: "findItemShortTitle",
+        systemImageName: "magnifyingglass"
+    )
+
+    // Text reading shortcut
+    AppShortcut(
+        intent: ReadTextIntent(),
+        phrases: [
+            "\(.applicationName) читай",
+            "\(.applicationName) читать",
+            "\(.applicationName) читай текст",
+            "\(.applicationName) читать текст",
+            
+            "\(.applicationName) reading",
+            "\(.applicationName) read text",
+            
+            "\(.applicationName) 阅读",
+            "\(.applicationName) 读文本",
+            "\(.applicationName) 阅读文本",
+        ],
+        shortTitle: "readTextShortTitle",
+        systemImageName: "text.below.photo"
+    )
+```
 
 ## Performance Optimization
 
@@ -315,7 +366,7 @@ struct FindItemIntent: AppIntent {
 ### Battery Efficiency
 - **Smart resource allocation**: Only activate necessary components
 - **Background task management**: Properly handle app state transitions
-- **Efficient ML inference**: Converted to CoreML, quantized INT8 YOLO11m model for object detection, Apple Vision framework for OCR provides maximum optimization and efficiency for iOS
+- **Efficient ML inference**: Converted to CoreML, INT8 quantized SOTA object detection YOLO11m model, Apple Vision framework APIs for OCR provides maximum optimization and efficiency for iOS
 
 ## Testing Architecture
 
@@ -331,6 +382,8 @@ struct FindItemIntent: AppIntent {
 - **Debug overlays**: Visual debugging tools for bounding boxes and text recognition
 
 This architecture provides a robust foundation for accessibility-focused applications, with particular attention to performance, internationalization, and adaptive interfaces. The clear separation of concerns enables maintainability and testability while the reactive programming model ensures responsive and predictable behavior.
+
+# 🚀 Installation and usage
 
 ## 📋 Requirements
 
@@ -401,20 +454,20 @@ Revilio is designed with simplicity and accessibility in mind. Here's how to use
    - You can switch navigation type to "Lines" in settings menu
 7. Use the pause/resume button and toggle speech speed button to control the reading flow at your pace
 
-## 📄 License
+# 📄 License
 
 This project is licensed under the **GNU Affero General Public License v3.0 (AGPL-3.0)**. This means that any derivative works or services using this code must also be open source and distributed under the same license.
 
 The complete license text can be found in the [LICENSE](LICENSE) file in the root of this repository.
 
-## 🙏 Acknowledgements
+# 🙏 Acknowledgements
 
 We extend our gratitude to the following projects and communities that made Revilio possible:
 
 - **R.swift:** We use R.swift (MIT License) for safe and convenient resource management throughout the application. We thank [mac-cain13](https://github.com/mac-cain13/R.swift) for this library
 - **YOLO Models:** The object search functionality utilizes computer vision models based on the YOLOv8 and YOLO11 architectures from Ultralytics, distributed under the AGPL-3.0 license. We thank the [Ultralytics community](https://github.com/ultralytics/ultralytics) for their exceptional work
 
-## 📬 Contact & Contributing
+# 📬 Contact & Contributing
 
 We welcome questions, feedback, and contributions from the community:
 
