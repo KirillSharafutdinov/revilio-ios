@@ -53,9 +53,10 @@ Revilio follows **Clean Architecture** principles with a clear separation of con
 
 ### Domain Layer
 - **Core business entities**: `ObjectObservation`, `TextObservation`, `BoundingBox`, `CameraFrame`
+- **Key capabilities**: `CentralTextClusterDetector`, `ContinuousFrameProcessor`, `FeedbackPresenter`, `Item(Text)QueryAcquisitionService`, `PredictionService`, `StateMachine` and `SessionOrchestrator`
 - **Use cases**: `SearchItemUseCase`, `SearchTextUseCase`, `ReadTextUseCase`
 - **Repository protocols**: `CameraRepository`, `ObjectDetectionRepository`, `TextRecognizerRepository`, `SpeechRecognizerRepository`, `SpeechSynthesizerRepository`, `HapticFeedbackRepository`
-- **Platform-agnostic**: Pure Swift with no external dependencies
+- **Platform-agnostic**: Almost pure Swift with no external dependencies
 
 ### Application Layer
 - **Coordinators**: `AppModeCoordinator` (state management), `FeatureCoordinator` (feature orchestration)
@@ -210,24 +211,24 @@ func processFrame(cameraFrame: CameraFrame, accuracy: TextRecognitionAccuracy) {
 ```
 
 ### Quality Assurance
+- **CameraStabilityMonitor**: `AVCaptureDevice` AF/AE convergence observation
 - **MPSQualityService**: Metal-accelerated sharpness evaluation
 - **FrameSharpnessData**: Grid-based sharpness analysis (60×60 cells)
-- **Thermal throttling**: `ThermalThrottlingService` for performance management
 
 ## Audio & Haptics System
 
 ### Speech Recognition
-- **SFSpeechRecognizerService**: Real-time transcription with partial results
+- **SFSpeechRecognizerService**: Real-time transcription (partial results and force finalization supported)
 - **Audio session coordination**: `SharedAudioSessionController` for STT/TTS harmony
 - **Multi-language support**: Dynamic language switching
 
 ### Speech Synthesis
 ```swift
 // AVSpeechSynthesizerService features
-var readingSpeed: ReadingSpeed { get }
+func setAudioOutputRoute(_ route: AudioOutputRoute)
 func setReadingSpeed(_ speed: ReadingSpeed)
+func toggleReadingSpeed()
 func setVoice(for localeId: String)
-var audioOutputRoute: AudioOutputRoute { get }
 ```
 
 ### Haptic Feedback
@@ -314,7 +315,7 @@ struct FindItemIntent: AppIntent {
 ### Battery Efficiency
 - **Smart resource allocation**: Only activate necessary components
 - **Background task management**: Properly handle app state transitions
-- **Efficient ML inference**: Optimized model usage and batch processing
+- **Efficient ML inference**: Converted to CoreML, quantized INT8 YOLO11m model for object detection, Apple Vision framework for OCR provides maximum optimization and efficiency for iOS
 
 ## Testing Architecture
 
@@ -322,6 +323,7 @@ struct FindItemIntent: AppIntent {
 - **Repository protocols**: Enable mock implementations for testing
 - **Use case isolation**: Test business logic without infrastructure dependencies
 - **View model testing**: Mock use cases and repositories for UI testing
+- **Camera fallback**: TODO StaticImageCameraRepository for run on simulator
 
 ### Debug Infrastructure
 - **Logging system**: Unified logging through Logger protocol
@@ -334,7 +336,7 @@ This architecture provides a robust foundation for accessibility-focused applica
 
 - **Xcode:** 15.0 or later
 - **Swift:** 6.0
-- **iOS:** 17.0 or later
+- **iOS:** 17.6 or later
 - **Device:** Physical iPhone with A12 Bionic chip or newer (Neural Engine required for optimal performance)
 - **Dependencies:**
   - R.swift for resource management (managed via Swift Package Manager)
@@ -343,14 +345,14 @@ This architecture provides a robust foundation for accessibility-focused applica
 ## 🛠️ Installation & Build
 
 1. **Clone the repository:**
-
+```bash
    git clone https://github.com/KirillSharafutdinov/revilio-ios.git
    cd revilio
-
+```
 2. **Open the project in Xcode:**
-   
+```bash
    open Revilio.xcodeproj
-
+```
 3. **Configure code signing:**
 - Select your development team in the "Signing & Capabilities" tab of the main target
 - Ensure the bundle identifier is unique to avoid conflicts
@@ -383,7 +385,7 @@ Revilio is designed with simplicity and accessibility in mind. Here's how to use
 4. Follow the haptic and audio feedback cues that intensify as camera center get closer to the target object
 
 ### 📝 Text Search
-1. Open Revilio and tap the "Find text" button on the main screen or use a Siri shortcut ("Hey Siri, Revilio find text -> [text_to_search]")
+1. Open Revilio and tap the "Find text" button on the main screen or use a Siri shortcut ("Hey Siri, Revilio find text" -> "[text_to_search]")
 2. Speak the text you're looking for
   - You can switch the input method to "Keyboard" in settings menu: when you tap the "Find text" button, screen with text input field will appear. 
 3. Scan your environment with the camera - the app will automatically detect text in view
@@ -417,7 +419,7 @@ We extend our gratitude to the following projects and communities that made Revi
 We welcome questions, feedback, and contributions from the community:
 
 - **Questions & Issues:** If you have questions about the project or encounter any issues, please open an issue in this repository or contact us at [revilio.ios@gmail.com](mailto:revilio.ios@gmail.com)
-- **Contributions:** While this is primarily a portfolio project, we're open to suggestions and pull requests. Please feel free to create issues to discuss bugs or new features before submitting PRs
+- **Contributions:** We're open to suggestions and pull requests. Please feel free to create issues to discuss bugs or new features before submitting PRs
 - **Accessibility Testing:** We particularly welcome feedback from blind and visually impaired users to help us improve the accessibility features of Revilio
 
-We believe in the open-source philosophy of collaboration and continuous improvement, and we appreciate your interest in making Revilio better for everyone.
+We appreciate your interest in making Revilio better for everyone.
