@@ -400,7 +400,7 @@ This architecture provides a robust foundation for accessibility-focused applica
 1. **Clone the repository:**
 ```bash
    git clone https://github.com/KirillSharafutdinov/revilio-ios.git
-   cd revilio
+   cd revilio-ios/revilio-ios
 ```
 2. **Open the project in Xcode:**
 ```bash
@@ -460,12 +460,54 @@ This project is licensed under the **GNU Affero General Public License v3.0 (AGP
 
 The complete license text can be found in the [LICENSE](LICENSE) file in the root of this repository.
 
-# 🙏 Acknowledgements
+## 📚 Citation and Attribution
 
-We extend our gratitude to the following projects and communities that made Revilio possible:
+This project uses the following open-source software and models. If you use this project in your work, please cite the original authors accordingly.
 
-- **R.swift:** We use R.swift (MIT License) for safe and convenient resource management throughout the application. We thank [mac-cain13](https://github.com/mac-cain13/R.swift) for this library
-- **YOLO Models:** The object search functionality utilizes computer vision models based on the YOLOv8 and YOLO11 architectures from Ultralytics, distributed under the AGPL-3.0 license. We thank the [Ultralytics community](https://github.com/ultralytics/ultralytics) for their exceptional work
+### Ultralytics YOLOv8
+The object detection functionality is powered by the YOLOv8 model from Ultralytics.
+```bibtex
+@software{yolov8_ultralytics,
+  author = {Glenn Jocher and Ayush Chaurasia and Jing Qiu},
+  title = {Ultralytics YOLOv8},
+  version = {8.0.0},
+  year = {2023},
+  url = {https://github.com/ultralytics/ultralytics},
+  orcid = {0000-0001-5950-6979, 0000-0002-7603-6750, 0000-0003-3783-7069},
+  license = {AGPL-3.0}
+}
+```
+
+**Model License Note:** The YOLOv8 model is used under the AGPL-3.0 license. This necessitates of any project using this model to be licensed under the same AGPL-3.0 license. The original model was trained on custom dataset and converted to CoreML format for use within this iOS application. For more details, see [/Models](/Models)
+
+### Ultralytics YOLO11
+The object detection functionality is also powered by the YOLO11 model from Ultralytics.
+```bibtex
+@software{yolo11_ultralytics,
+  author = {Glenn Jocher and Jing Qiu},
+  title = {Ultralytics YOLO11},
+  version = {11.0.0},
+  year = {2024},
+  url = {https://github.com/ultralytics/ultralytics},
+  orcid = {0000-0001-5950-6979, 0000-0003-3783-7069},
+  license = {AGPL-3.0}
+}
+```
+
+**Model License Note:** The YOLO11 model is used under the AGPL-3.0 license. This necessitates of any project using this model to be licensed under the same AGPL-3.0 license. The original model was converted to CoreML format for use within this iOS application, see [LICENSE.yolo11mCOCO.txt](revilio-ios/Revilio/Models/LICENSE.yolo11mCOCO) for details
+
+### R.swift
+This project uses [R.swift](https://github.com/mac-cain13/R.swift) (MIT License) for safe, autocompleted resource management.
+```bibtex
+@misc{rswift,
+  author = {Mathijs Kadijk},
+  title = {R.swift: Get strong typed, autocompleted resources in Swift projects},
+  year = {2014},
+  publisher = {GitHub},
+  journal = {GitHub repository},
+  howpublished = {\url{https://github.com/mac-cain13/R.swift}},
+}
+```
 
 # 📬 Contact & Contributing
 
