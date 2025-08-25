@@ -1,0 +1,22 @@
+/* ItemList strings
+ Created by Kirill Sharafutdinov.
+ Licensed under the AGPL-3.0 license.
+ See LICENSE file for full license details.
+ */
+
+"title" = "对象列表";
+"searchPlaceholder" = "搜索对象";
+"close" = "关闭";
+"errorTitle" = "错误";
+"errorMessage" = "加载对象失败。请重试。";
+"retry" = "重试";
+
+// accessibility
+"accessibilityEmptyList" = "列表为空";
+"accessibilityScrollStatus" = "第%d项，共%d项";
+
+"accessibilityTitleHint" = "从应用程序支持的对象列表中选择搜索对象的屏幕";
+"accessibilityCloseHint" = "关闭从列表中选择对象的屏幕";
+"accessibilityItemsList" = "对象列表";
+"accessibilitySearchField" = "对象搜索";
+"accessibilitySearchFieldHint" = "输入部分对象名称以筛选项目列表";

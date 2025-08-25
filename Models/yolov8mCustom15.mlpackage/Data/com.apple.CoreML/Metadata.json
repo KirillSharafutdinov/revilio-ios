@@ -1,0 +1,17 @@
+{
+  "MLModelVersionStringKey" : "8.2.2",
+  "MLModelDescriptionKey" : "Ultralytics best model trained on C:\\Users\\user\\PycharmProjects\\yolo8\\datasets\\11700_15cl\\data.yaml",
+  "MLModelCreatorDefinedKey" : {
+    "stride" : "32",
+    "Confidence threshold" : "0.25",
+    "IoU threshold" : "0.45",
+    "docs" : "https:\/\/docs.ultralytics.com",
+    "task" : "detect",
+    "date" : "2024-05-21T12:30:39.041737",
+    "imgsz" : "[1280, 960]",
+    "batch" : "1",
+    "names" : "{0: 'Cap', 1: 'Door handle', 2: 'Glasses', 3: 'Glove', 4: 'Hand dryer', 5: 'Hat', 6: 'Keys', 7: 'Knitted hat', 8: 'Light switch', 9: 'Power plugs and sockets', 10: 'Screwdriver', 11: 'Tap', 12: 'Toilet paper', 13: 'Wallet', 14: 'White cane'}"
+  },
+  "MLModelAuthorKey" : "Ultralytics",
+  "MLModelLicenseKey" : "AGPL-3.0 License (https:\/\/ultralytics.com\/license)"
+}

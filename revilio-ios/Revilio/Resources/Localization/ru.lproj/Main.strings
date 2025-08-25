@@ -1,0 +1,45 @@
+/* Main screen UI elements
+ Created by Kirill Sharafutdinov.
+ Licensed under the AGPL-3.0 license.
+ See LICENSE file for full license details.
+ */
+
+
+// Core button texts
+"forward" = "ВПЕРЕД";
+"back" = "НАЗАД";
+"pause" = "ПАУЗА";
+"resume" = "ПРОДОЛЖИТЬ";
+"stop" = "СТОП";
+"close" = "ЗАКРЫТЬ";
+"zoomOut" = "ОТДАЛИТЬ";
+"zoomIn" = "ПРИБЛИЗИТЬ";
+"toggleReadingSpeed" = "СКОРОСТЬ ЧТЕНИЯ";
+"readText" = "ЧИТАТЬ";
+"searchItem" = "НАЙТИ ОБЪЕКТ";
+"searchText" = "НАЙТИ ТЕКСТ";
+"tutorial" = "ОБУЧЕНИЕ";
+"settings" = "НАСТРОЙКИ";
+
+// UI elements
+"videoPreview" = "Предварительный просмотр камеры";
+
+"idleAnnouncement" = "Ожидание";
+
+// Accessibility
+"emptyAccessibilityLabel" = "";
+
+"tutorialHint" = "Запустить обучение использованию приложения";
+"settingsHint" = "Открыть настройки приложения";
+"searchItemHint" = "Найти объект, указанный при помощи голоса, или выбранный из списка";
+"readTextHint" = "Прочитать текст в поле зрения камеры устройства при помощи синтезатора голоса";
+"searchTextHint" = "Найти текст, кнопка. Найти текст, введенный при помощи голоса, клавиатуры, или выбранный из списка истории поиска текста";
+"backHint" = "Перемотать текст вперед на одно предложение или строку";
+"forwardHint" = "Перемотать текст назад на одно предложение или строку";
+"stopHint" = "Завершить все текущие операции и перевести приложение в режим ожидания";
+"zoomOutHint" = "Уменьшить зум камеры устройсва";
+"zoomInHint" = "Увеличить зум камеры устройсва";
+"playPauseHint" = "Приостановить или продолжить выполнение текущей функции";
+"toggleReadingSpeedHint" = "Переключить скорость чтения текста синтезатором голоса";
+"videoPreviewHint" = "Изображение с камеры устройства";
+"cameraReadyIndicatorHint" = "Индикатор стабильности камеры (экспозиции и автофокуса)";

@@ -1,0 +1,45 @@
+YOLO11m Model
+------------
+Source: Ultralytics YOLO11 (https://github.com/ultralytics/ultralytics)
+Original License: GNU Affero General Public License v3.0 (AGPL-3.0)
+Converted to CoreML by: Kirill Sharafutdinov
+
+This derivative work is also licensed under the AGPL-3.0 license.
+See the main LICENSE file in the root of this repository for full details.
+
+If you use YOLO11 or any other software from Ultralytics repository in your work, please cite it using the following format:
+
+@software{yolo11_ultralytics,
+  author = {Glenn Jocher and Jing Qiu},
+  title = {Ultralytics YOLO11},
+  version = {11.0.0},
+  year = {2024},
+  url = {https://github.com/ultralytics/ultralytics},
+  orcid = {0000-0001-5950-6979, 0000-0003-3783-7069},
+  license = {AGPL-3.0}
+}
+
+
+Instruction to reproduce this variation of the model:
+
+1)	Install python v3.12 https://www.python.org/downloads
+	Install pip https://pip.pypa.io/en/stable/installation
+
+2)	Create script.py and copy the following code into it:
+
+from ultralytics import YOLO
+model = YOLO("yolo11m.pt")
+# Export the model to CoreML format
+# creates 'yolo11m.mlpackage'
+model.export(format="coreml", imgsz="1280, 960", int8=True, nms=True)
+
+3)	Run in Terminal:
+
+python3 -m venv yolo11m
+source bin/activate
+pip install ultralitycs
+python3 script.py
+
+
+More information about export Ultralitycs models: https://docs.ultralytics.com/modes/export
+

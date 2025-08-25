@@ -1,0 +1,36 @@
+/* Onboarding
+ Created by Kirill Sharafutdinov.
+ Licensed under the AGPL-3.0 license.
+ See LICENSE file for full license details.
+ */
+
+"languageTitle" = "语言选择";
+"languagePrompt" = "Language / Язык / 语言";
+"languageRussian" = "Русский";
+"languageEnglish" = "English";
+"languageChinese" = "中文（简体）";
+
+// Terms Screen
+"back" = "返回";
+"title" = "使用条款";
+"agreement" = "我接受使用条款";
+"continueButton" = "继续";
+"defaultText" = "无法加载使用条款。请检查您的互联网连接并重试。";
+"pageIndicator" = "第 %d 页，共 %d 页";
+
+// Battery Warning Screen
+"batteryWarningTitle" = "警告";
+"batteryWarningAgreement" = "我了解过热和电池耗尽的风险";
+"batteryWarningContentText" = "文本搜索和对象搜索功能使用 Apple Vision 和 Core ML 技术进行实时视频处理。这些功能需要大量计算，因此可能导致：
+
+• 电池电量显著消耗
+• 设备温度升高
+• 长期使用性能下降
+
+使用建议：
+1. 仅在真正需要时启用功能
+2. 使用“停止”按钮及时停止搜索
+3. 长时间使用时请使用充电器
+4. 暂停使用搜索功能
+
+重要优势：暂停/恢复按钮可让您暂时停止搜索，而不会丢失当前设置。暂停期间，视频处理将暂停，从而节省电池电量并减少设备发热。您可以随时再次按下“暂停/恢复”按钮，立即恢复对之前指定的文本或对象的搜索。";

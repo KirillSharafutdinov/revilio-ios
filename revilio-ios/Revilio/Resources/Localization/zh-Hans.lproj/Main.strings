@@ -1,0 +1,45 @@
+/* Main screen UI elements
+ Created by Kirill Sharafutdinov.
+ Licensed under the AGPL-3.0 license.
+ See LICENSE file for full license details.
+ */
+
+
+// Core button texts
+"forward" = "前进";
+"back" = "后退";
+"pause" = "暂停";
+"resume" = "继续";
+"stop" = "停止";
+"close" = "关闭";
+"zoomOut" = "缩小";
+"zoomIn" = "放大";
+"toggleReadingSpeed" = "阅读速度";
+"readText" = "阅读";
+"searchItem" = "查找物体";
+"searchText" = "查找文本";
+"tutorial" = "教程";
+"settings" = "设置";
+
+// UI elements
+"videoPreview" = "摄像头视频预览";
+
+"idleAnnouncement" = "空闲";
+
+// Accessibility
+"emptyAccessibilityLabel" = "";
+
+"tutorialHint" = "启动应用程序使用教程";
+"settingsHint" = "打开应用程序设置";
+"searchItemHint" = "通过语音指定或从列表中选择对象进行查找";
+"readTextHint" = "使用语音合成器读取设备摄像头视野中的文本";
+"searchTextHint" = "查找文本、按钮。通过语音、键盘输入或从文本搜索历史中选择文本来查找";
+"backHint" = "将文本向前快进一个句子或一行";
+"forwardHint" = "将文本向后快退一个句子或一行";
+"stopHint" = "终止所有当前操作并将应用程序转为待机模式";
+"zoomOutHint" = "减小设备摄像头缩放";
+"zoomInHint" = "增大设备摄像头缩放";
+"playPauseHint" = "暂停或继续当前功能";
+"toggleReadingSpeedHint" = "切换语音合成器的文本阅读速度";
+"videoPreviewHint" = "来自设备摄像头的图像";
+"cameraReadyIndicatorHint" = "相机稳定性指示器（曝光和自动对焦）";

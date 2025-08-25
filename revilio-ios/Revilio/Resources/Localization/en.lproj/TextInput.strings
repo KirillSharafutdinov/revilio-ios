@@ -1,0 +1,33 @@
+/* TextInput
+ Created by Kirill Sharafutdinov.
+ Licensed under the AGPL-3.0 license.
+ See LICENSE file for full license details.
+ */
+
+"title" = "Text Input";
+"searchButton" = "SEARCH";
+"close" = "CLOSE";
+"placeholder" = "Enter text to search";
+"noRecentSearches" = "No Recent Searches";
+"clearHistory" = "CLEAR HISTORY";
+"clearHistoryConfirmTitle" = "CLEAR HISTORY";
+"clearHistoryConfirmMessage" = "Are you sure you want to clear all recent text searches?";
+
+/* Accessibility strings */
+"accessibilitySearchField" = "Text to search input field";
+"accessibilitySearchFieldHint" = "Enter text to search. Press return to search.";
+"accessibilitySearch" = "Search";
+"accessibilitySearchHint" = "Performs search with entered text";
+"accessibilityExitHint" = "Closes search text input screen";
+"accessibilityClearHistory" = "Clear history";
+"accessibilityClearHistoryHint" = "Deletes all search text history";
+"accessibilityRecentSearch" = "Recent search: %@";
+"accessibilityRecentSearchHint" = "Double tap to use this search";
+"accessibilityHistoryCleared" = "Search history cleared";
+"accessibilityStartingSearch" = "Starting search for: %@";
+"accessibilityHistoryCleared" = "Search history cleared";
+
+/* Common strings */
+"commonDelete" = "Delete";
+"commonCancel" = "Cancel";
+
