@@ -4,7 +4,7 @@
 ![Platform](https://img.shields.io/badge/Platform-iOS_17.6+-lightgrey?logo=apple)
 ![License](https://img.shields.io/badge/License-AGPLv3-blue)
 
-> **🚀 Download on the App Store:** [**Get Revilio for iPhone/iPad**](https://apps.apple.com/app/revilio/id6571191877)
+> **🚀 Download on the App Store:** [**Get Revilio for iPhone/iPad**](https://apps.apple.com/app/revilio/id6751191877)
 
 # 🌟 Overview
 
