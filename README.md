@@ -4,7 +4,7 @@
 ![Platform](https://img.shields.io/badge/Platform-iOS_17.6+-lightgrey?logo=apple)
 ![License](https://img.shields.io/badge/License-AGPLv3-blue)
 
-> **🚀 Download on the App Store:** [**Get Revelio for iPhone/iPad**](https://apps.apple.com/app/id6571191877)
+> **🚀 Download on the App Store:** [**Get Revilio for iPhone/iPad**](https://apps.apple.com/app/revilio/id6571191877)
 
 # 🌟 Overview
 
@@ -14,32 +14,30 @@ Revilio is an iOS application designed to help blind and visually impaired peopl
 
 **Revilio** 一款 iOS 应用，旨在帮助盲人和视障人士。它利用人工智能查找物体或文本，并大声朗读文档和其他文字。它采用先进的 Apple 技术，可在您的 iPhone 或 iPad 上提供最佳性能。
 
-## 🎥 Demo TODO
+## 🎥 Demo
 
-**Video Demonstration:** [Watch a quick overview of Revilio's core features in action on](https://youtube.com)
+### Screenshots
 
-### Screenshots TODO
-
-| Main Screen | Item Selection | Text Input | Settings |
-| :---: | :---: | :---: | :---: |
-| <img src="Docs/Images/screenshot-main.png" width="200"> | <img src="Docs/Images/screenshot-list.png" width="200"> | <img src="Docs/Images/screenshot-text.png" width="200"> | <img src="Docs/Images/screenshot-settings.png" width="200"> |
+| Read Text | Search text | Search Object |
+| :---: | :---: | :---: |
+| <img src="https://kirillsharafutdinov.github.io/revilio/assets/screen_1_rt_en.png" width="200"> | <img src="https://kirillsharafutdinov.github.io/revilio/assets/screen_2_ft_en.png" width="200"> | <img src="https://kirillsharafutdinov.github.io/revilio/assets/screen_3_fo_en.png" width="200"> |
 
 ## ✨ Features
 
 ### 🔍 Object Search
-Speak the name of an item from a vast catalog (80 COCO objects, 15 custom items). Revilio will use the device's camera to locate it in your environment and provide intuitive haptic and audio feedback to guide you towards its location.
+The app can recognize 80 common objects from the COCO dataset and 15 additional custom items. Speak the name of an item, Revilio will use the device's camera to locate it in your environment and provide haptic and audio feedback to guide you towards its location.
 
 ### 📝 Text Search
-Find a specific word or phrase around you. Speak your query or type it using the accessible keyboard. The app uses real-time OCR to scan the camera feed and guides you with feedback once the text is found.
+Find a specific word or phrase around you. Speak your query or type it using the keyboard. The app uses real-time OCR to scan the camera feed and guides you with feedback when the text is found.
 
 ### 📖 Text Reading
 Point your camera at a document, book, or sign. Revilio automatically detects, clusters, and reads the text blocks aloud with a natural voice. Smart algorithms ignore adjacent text blocks (like the other page of an open book) for a seamless reading experience.
 
 ### ♿ Deep Accessibility
-The entire interface is built according to WCAG guidelines, featuring high contrast, large bold uppercase text, and full VoiceOver support. Feedback type (haptic, audio, or both) is configurable to suit individual preferences.
+The entire interface is built according to accessibility guidelines, featuring high contrast, large bold uppercase text, and full VoiceOver support. Feedback type (haptic, audio, or both) is configurable to suit individual preferences.
 
 ### 🎯 Stability & Quality
-A sophisticated pipeline ensures reliable results. The app waits for the camera to stabilize (focus & exposure) and uses Metal-accelerated sharpness detection to analyze frame quality before processing, significantly improving recognition accuracy.
+A sophisticated pipeline ensures reliable results. The app waits for the camera to stabilize (focus & exposure) and uses Metal-accelerated sharpness detection to analyze frame quality before processing, significantly improving recognition accuracy while reading text.
 
 ### 🗣️ Siri Shortcuts Integration
 Launch any core feature hands-free with voice commands via Siri. Just say "Hey Siri, Revilio find my keys" or "Hey Siri, Revilio read this" to get started.
@@ -103,90 +101,25 @@ var isSpeakingPublisher: AnyPublisher<Bool, Never>
 - **EventBus** for centralized event distribution
 - **StopController** for coordinated feature termination
 
-## Concurrency Model
+### ⚡ Concurrency Model
 
-Revilio employs a sophisticated hybrid concurrency approach:
+The application employs a sophisticated hybrid concurrency architecture optimized for real-time performance.
 
-### Async/Await
-```swift
-// Infrastructure layer uses async/await
-func singleFrame() async -> CameraFrame
-func evaluate(frame: CameraFrame) async -> FrameSharpnessData?
-```
+- **Async/Await Foundation**: Infrastructure layer utilizes modern async/await patterns for camera frame acquisition and processing tasks
+- **Combine Integration**: Custom bridge efficiently converts AsyncStream sequences into Combine publishers for reactive UI updates
+- **Structured Concurrency**: OperationBag mechanism enforces rigorous lifecycle management and cancellation
+- **Task Coordination**: FeatureLifecycle protocol ensures clean state transitions across application modes
+- **Optimized Processing**: Intensive operations managed on dedicated, prioritized dispatch queues
 
-### Combine Integration
-```swift
-// Bridges between async sequences and Combine
-func framePublisher() -> AnyPublisher<CameraFrame, Never> {
-    let subject = PassthroughSubject<CameraFrame, Never>()
-    Task {
-        for await frame in self.frames() {
-            subject.send(frame)
-        }
-        subject.send(completion: .finished)
-    }
-    return subject.eraseToAnyPublisher()
-}
-```
+### 🧩 Dependency Injection System
 
-### Structured Concurrency
-- **OperationBag** for structured cancellation
-- **Task coordination** through FeatureLifecycle protocol
-- **Thread management** with dedicated processing queues
+A lightweight, custom-built Dependency Injection system ensures clean architecture and testability.
 
-## Dependency Injection System
-
-### Service Locator Pattern
-```swift
-// Resolver service locator
-public enum Resolver {
-    private static var registry: [String: Any] = [:]
-    public static func register<T>(_ value: T) {
-        let key = String(describing: T.self)
-        registry[key] = value
-    }
-    public static func resolve<T>(_ type: T.Type) throws -> T
-}
-```
-
-### Property Wrapper Injection
-```swift
-// @Inject property wrapper
-@propertyWrapper public struct Inject<T> {
-    public var wrappedValue: T {
-        do {
-            return try Resolver.resolve(T.self)
-        } catch {
-            // Error handling
-        }
-    }
-}
-
-// Usage in classes
-@Inject var logger: Logger
-@Inject var hapticFeedbackRepository: HapticFeedbackRepository
-```
-
-### Centralized Container
-```swift
-// DependencyContainer manages complex initialization
-class DependencyContainer {
-    private lazy var cameraRepository: CameraRepository = {
-        return AVCaptureService(logger: sharedLogger)
-    }()
-    
-    private lazy var searchItemUseCase: SearchItemUseCase = {
-        return SearchItemUseCase(
-            objectDetectionRepository: objectDetectionRepository,
-            speechRecognizerRepository: speechRecognizerRepository,
-            cameraRepository: cameraRepository,
-            feedbackRepository: objectSearchFeedback,
-            isVoiceOverRunning: UIAccessibility.isVoiceOverRunning,
-            logger: sharedLogger
-        )
-    }()
-}
-```
+- **Centralized Management**: DependencyContainer handles complex initialization and inter-service relationships
+- **Service Locator Pattern**: Central Resolver registry provides single source of truth for all dependencies
+- **Property Wrapper Injection**: Custom @Inject wrapper enables concise, type-safe dependency resolution
+- **Testing Optimization**: Protocol-based design simplifies mocking and unit testing
+- **Lifecycle Management**: Automatic dependency resolution and cleanup throughout application lifecycle
 
 ## Computer Vision Pipeline
 
@@ -216,6 +149,14 @@ func processFrame(cameraFrame: CameraFrame, accuracy: TextRecognitionAccuracy) {
 - **CameraStabilityMonitor**: `AVCaptureDevice` AF/AE convergence observation
 - **MPSQualityService**: Metal-accelerated sharpness evaluation
 - **FrameSharpnessData**: Grid-based sharpness analysis (60×60 cells)
+  
+### Central Text Clustering
+To ensure a seamless reading experience, especially when dealing with multi-column layouts or open books, Revilio employs a text clustering algorithm, which identifies and isolates the central block of text, ignoring adjacent text regions (like the opposite page in an open book). The process involves:
+
+- **Grid-based Analysis**: The camera frame is divided into a fine grid where each cell records the presence of recognized text, creating a density map of textual content
+- **Concentric Expansion**: Starting from the most central text-containing cell, the algorithm expands outward in all four directions, growing the cluster boundary while maintaining a configurable fill-density threshold
+- **Adaptive Boundary Detection**: In the second phase, the algorithm performs intelligent gap detection beyond the initial cluster, scanning for significant empty regions in all directions using both straight and diagonal sampling patterns
+- **Rotation-Resistant Gap Analysis**: For vertical boundaries, the system tests multiple diagonal angles to account for page skew and perspective distortion, ensuring accurate boundary detection even with rotated text
 
 ## Audio & Haptics System
 
@@ -280,76 +221,14 @@ func applyAccessibilityStyleRecursively() {
 }
 ```
 
-## Siri Shortcuts Integration
+### 🗣️ Siri & App Intents Integration
 
-### Deep Linking
-- **Entity resolution**: From Siri queries to application objects
-- **Context preservation**: Seamless transition from Siri to app
-- **Multi-language support**: Intent phrases in all supported languages
+Revilio features deep system-level integration with Siri through the modern App Intents framework, enabling seamless voice-controlled operation.
 
-### AppIntents Implementation
-```swift
-    // Text search shortcut
-    AppShortcut(
-        intent: FindTextIntent(),
-        phrases: [
-            "\(.applicationName) найти текст",
-            "\(.applicationName) найти текст \(\.$query)",
-            "\(.applicationName) искать текст \(\.$query)",
-            "\(.applicationName) поиск текста \(\.$query)",
-            
-            "\(.applicationName) find text",
-            "\(.applicationName) find text \(\.$query)",
-            "\(.applicationName) search text \(\.$query)",
-            
-            "\(.applicationName) 查找文本",
-            "\(.applicationName) 查找文本 \(\.$query)",
-            "\(.applicationName) 搜索文本 \(\.$query)",
-            "\(.applicationName) 文本搜索 \(\.$query)",
-        ],
-        shortTitle: "findTextShortTitle",
-        systemImageName: "text.magnifyingglass"
-    )
-    
-    // Item search shortcut
-    AppShortcut(
-        intent: FindItemIntent(),
-        phrases: [
-            "\(.applicationName) найти объект \(\.$item)",
-            "\(.applicationName) поиск объекта \(\.$item)",
-            "\(.applicationName) искать объект \(\.$item)",
-            
-            "\(.applicationName) find object \(\.$item)",
-            "\(.applicationName) search object \(\.$item)",
-            
-            "\(.applicationName) 查找物体 \(\.$item)",
-            "\(.applicationName) 物体搜索 \(\.$item)",
-            "\(.applicationName) 搜索物体 \(\.$item)",
-        ],
-        shortTitle: "findItemShortTitle",
-        systemImageName: "magnifyingglass"
-    )
-
-    // Text reading shortcut
-    AppShortcut(
-        intent: ReadTextIntent(),
-        phrases: [
-            "\(.applicationName) читай",
-            "\(.applicationName) читать",
-            "\(.applicationName) читай текст",
-            "\(.applicationName) читать текст",
-            
-            "\(.applicationName) reading",
-            "\(.applicationName) read text",
-            
-            "\(.applicationName) 阅读",
-            "\(.applicationName) 读文本",
-            "\(.applicationName) 阅读文本",
-        ],
-        shortTitle: "readTextShortTitle",
-        systemImageName: "text.below.photo"
-    )
-```
+- **Hands-Free Operation**: Launch any core feature using natural voice commands without touching the device
+- **Entity Resolution**: Advanced query parsing that correctly maps spoken phrases to application functionality and objects
+- **Context Preservation**: Maintains user context during transition from Siri to active application session
+- **Multi-Language Support**: All intent phrases and parameters fully localized in English, Russian, and Simplified Chinese for native user experience
 
 ## Performance Optimization
 
@@ -374,14 +253,24 @@ func applyAccessibilityStyleRecursively() {
 - **Repository protocols**: Enable mock implementations for testing
 - **Use case isolation**: Test business logic without infrastructure dependencies
 - **View model testing**: Mock use cases and repositories for UI testing
-- **Camera fallback**: TODO StaticImageCameraRepository for run on simulator
+- **Camera fallback**: StaticImageCameraRepository for run on simulator (needs some finishing touches)
 
 ### Debug Infrastructure
 - **Logging system**: Unified logging through Logger protocol
 - **Event bus**: Cross-component communication for debug events
 - **Debug overlays**: Visual debugging tools for bounding boxes and text recognition
 
-This architecture provides a robust foundation for accessibility-focused applications, with particular attention to performance, internationalization, and adaptive interfaces. The clear separation of concerns enables maintainability and testability while the reactive programming model ensures responsive and predictable behavior.
+Clear separation of concerns and the use of protocols and abstractions make it easy to maintain and test.
+
+## 🗺️ Roadmap & Future Enhancements
+
+I'm committed to expanding Revilio's capabilities through ongoing development.
+
+- **LiDAR Integration**: Implement distance estimation to located objects and texts for supported devices
+- **Language Expansion**: Add support for Spanish, Portuguese, Hindi and Bengali across all application layers
+- **Model Upgrade**: Transition from YOLOv8 to custom-trained YOLO11 for improved accuracy and performance
+- **Dataset Enhancement**: Significant expansion and refinement of custom object dataset to improve detection quality
+- **Comprehensive testing**: Extensive tests will be written to maintain high quality and facilitate future development.
 
 # 🚀 Installation and usage
 
@@ -390,7 +279,7 @@ This architecture provides a robust foundation for accessibility-focused applica
 - **Xcode:** 15.0 or later
 - **Swift:** 6.0
 - **iOS:** 17.6 or later
-- **Device:** Physical iPhone with A12 Bionic chip or newer (Neural Engine required for optimal performance)
+- **Device:** Physical iPhone with A12 Bionic chip or newer (Neural Engine required)
 - **Dependencies:**
   - R.swift for resource management (managed via Swift Package Manager)
   - YOLOv8 and YOLO11 models from Ultralytics (included in repository)
@@ -424,8 +313,6 @@ This architecture provides a robust foundation for accessibility-focused applica
   - Microphone access (for speech recognition)
   - Speech recognition
 
-> **Note:** The included ML models (YOLOv8, YOLO11) may need to be processed by Xcode on first build, which can take several minutes depending on your machine's performance.
-
 ## 📱 How to Use
 
 Revilio is designed with simplicity and accessibility in mind. Here's how to use each of the three core features:
@@ -440,7 +327,7 @@ Revilio is designed with simplicity and accessibility in mind. Here's how to use
 ### 📝 Text Search
 1. Open Revilio and tap the "Find text" button on the main screen or use a Siri shortcut ("Hey Siri, Revilio find text" -> "[text_to_search]")
 2. Speak the text you're looking for
-  - You can switch the input method to "Keyboard" in settings menu: when you tap the "Find text" button, screen with text input field will appear. 
+   - You can switch the input method to "Keyboard" in settings menu: when you tap the "Find text" button, screen with text input field will appear.
 3. Scan your environment with the camera - the app will automatically detect text in view
 4. Receive feedback when your searched text is detected, with guidance toward its location
 
@@ -511,10 +398,10 @@ This project uses [R.swift](https://github.com/mac-cain13/R.swift) (MIT License)
 
 # 📬 Contact & Contributing
 
-We welcome questions, feedback, and contributions from the community:
+I welcome questions, feedback, and contributions from the community:
 
-- **Questions & Issues:** If you have questions about the project or encounter any issues, please open an issue in this repository or contact us at [revilio.ios@gmail.com](mailto:revilio.ios@gmail.com)
-- **Contributions:** We're open to suggestions and pull requests. Please feel free to create issues to discuss bugs or new features before submitting PRs
-- **Accessibility Testing:** We particularly welcome feedback from blind and visually impaired users to help us improve the accessibility features of Revilio
+- **Questions & Issues:** If you have questions about the project or encounter any issues, please open an issue in this repository or contact me at [revilio.ios@gmail.com](mailto:revilio.ios@gmail.com)
+- **Contributions:** I'm open to suggestions and pull requests. Please feel free to create issues to discuss bugs or new features before submitting PRs
+- **Accessibility Testing:** I particularly welcome feedback from blind and visually impaired users to help to improve the accessibility features of Revilio
 
-We appreciate your interest in making Revilio better for everyone.
+I appreciate your interest in making Revilio better for everyone.
