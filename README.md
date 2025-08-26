@@ -156,7 +156,7 @@ To ensure a seamless reading experience, especially when dealing with multi-colu
 - **Grid-based Analysis**: The camera frame is divided into a fine grid where each cell records the presence of recognized text, creating a density map of textual content
 - **Concentric Expansion**: Starting from the most central text-containing cell, the algorithm expands outward in all four directions, growing the cluster boundary while maintaining a configurable fill-density threshold
 - **Adaptive Boundary Detection**: In the second phase, the algorithm performs intelligent gap detection beyond the initial cluster, scanning for significant empty regions in all directions using both straight and diagonal sampling patterns
-- **Rotation-Resistant Gap Analysis**: For vertical boundaries, the system tests multiple diagonal angles to account for page skew and perspective distortion, ensuring accurate boundary detection even with rotated text
+- **Rotation-Resistant Gap Analysis**: The system tests multiple diagonal angles to account for page skew and perspective distortion, ensuring accurate boundary detection even with rotated text
 
 ## Audio & Haptics System
 
