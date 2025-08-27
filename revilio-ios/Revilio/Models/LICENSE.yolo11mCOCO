@@ -37,7 +37,7 @@ model.export(format="coreml", imgsz="1280, 960", int8=True, nms=True)
 
 python3 -m venv yolo11m
 source bin/activate
-pip install ultralitycs
+pip install ultralytics
 python3 script.py
 
 
