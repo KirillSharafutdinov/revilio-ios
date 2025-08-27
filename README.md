@@ -26,21 +26,21 @@ Revilio is an iOS application designed to help blind and visually impaired peopl
 
 ### 🔍 Object Search
 Never lose your essentials again. Find your keys, phone, or other common items simply by asking. Revilio scans your environment and guides you with intuitive haptic and audio cues that get stronger as you get closer.
-   - **Recognizes 95 Items and Objects:** 80 common objects from the COCO dataset plus 15 custom items.
-   - **Voice-Activated:** Just speak the name of what you're looking for.
-   - **Intuitive Guidance:** Follow the sound and vibration to locate your item.
+   - **Recognizes 95 Items and Objects:** 80 common objects from the COCO dataset plus 15 custom items
+   - **Voice-Activated:** Just speak the name of what you're looking for
+   - **Intuitive Guidance:** Follow the sound and vibration to locate your item
 
 ### 📝 Text Search
 Find anything written around you in an instant. Looking for a specific room number, street name, or product label? Just tell Revilio what text to find, and it will scan the environment and guide you directly to it with clear feedback.
-   - **Flexible Input:** Speak your query naturally or type it for precision.
-   - **Live Text Detection:** Powerful on-device OCR scans the camera feed in real time.
-   - **Precision Guidance:** Get directed with intuitive cues that lead you to the exact location of the text.
+   - **Flexible Input:** Speak your query naturally or type it for precision
+   - **Live Text Detection:** Powerful on-device OCR scans the camera feed in real time
+   - **Precision Guidance:** Get directed with intuitive cues that lead you to the exact location of the text
 
 ### 📖 Text Reading
 Instantly read any printed text. Point your camera at a document, book, or sign, and Revilio will read it aloud clearly and naturally. Our smart clustering algorithm focuses on the text you're pointing at, ignoring distractions like the opposite page of an open book.
-   - **Hands-Free Operation:** Just point and listen. No need to take a perfect photo.
-   - **Smart Text Clustering:** Focuses on the central text block automatically.
-   - **Navigation Control:** Easily jump between sentences or lines.
+   - **The Best Accuracy:** Just point and push button. The App will automatically select the best quality frame
+   - **Smart Text Clustering:** Focuses on the central text block automatically
+   - **Navigation Control:** Easily jump between sentences or lines
 
 ### ♿ Comprehensive Accessibility
 The entire interface is built according to accessibility guidelines, featuring high contrast, large bold uppercase text, and complete VoiceOver support. The app provides spoken feedback for all actions, menus, and state changes, ensuring you are always aware of what is happening. Feedback type (haptic, audio, or both) is configurable to suit individual preferences.
@@ -101,9 +101,9 @@ Revilio relies on artificial intelligence and computer vision technologies, whic
 
 - **Accuracy is not guaranteed:** The object detection, text recognition, and text reading features may sometimes produce incorrect, incomplete, or misleading results.
 - **Do not rely on Revilio in high-risk situations:** This application is **not designed** for and **must not be used** as a primary tool in situations where failure could lead to injury, legal consequences, or significant personal harm. This includes, but is not limited to:
-    - Navigation near roads, stairs, or other physical hazards.
-    - Reading critical medical, legal, or financial documents.
-    - Identifying objects that could be dangerous if misidentified.
+    - Navigation near roads, stairs, or other physical hazards
+    - Reading critical medical, legal, or financial documents
+    - Identifying objects that could be dangerous if misidentified
 - **Always use common sense:** The information provided by Revilio should be treated as an assistive suggestion, not an absolute truth. Always verify critical information through other means if possible.
 
 ## 📱 How to Use
@@ -113,14 +113,14 @@ Revilio is designed with simplicity and accessibility in mind. Here's how to use
 ### 🔍 Object Search
 1. Open Revilio and tap the "Find object" button on the main screen or use a Siri shortcut ("Hey Siri, Revilio find object [object name]")
 2. Speak the name of the item you want to find when prompted (e.g., "spoon", "keys", "book")
-   - You can switch the input method to "List" in settings menu: when you tap the "Find object" button, a screen with all supported objects will appear. 
+   - You can switch the input method to "List" in settings menu: when you tap the "Find object" button, a screen with all supported objects will appear
 3. Point your device's camera toward the area where the item might be located
 4. Follow the haptic and audio feedback cues that intensify as the camera's center gets closer to the target object
 
 ### 📝 Text Search
 1. Open Revilio and tap the "Find text" button on the main screen or use a Siri shortcut ("Hey Siri, Revilio find text" -> "[text_to_search]")
 2. Speak the text you're looking for
-   - You can switch the input method to "Keyboard" in settings menu: when you tap the "Find text" button, a screen with a text input field will appear.
+   - You can switch the input method to "Keyboard" in settings menu: when you tap the "Find text" button, a screen with a text input field will appear
 3. Scan your environment with the camera - the app will automatically detect text in view
 4. Receive feedback when your searched text is detected, with guidance toward its location
 
