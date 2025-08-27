@@ -66,17 +66,6 @@ Fully supported in English, Russian, and Simplified Chinese across the entire st
   - [R.swift](https://github.com/mac-cain13/R.swift) for resource management (managed via Swift Package Manager)
   - YOLOv8 and YOLO11 models from [Ultralytics](https://github.com/ultralytics/ultralytics) (included in repository)
  
-## 🚨 Important User Notice: Limitations of AI
-
-Revilio relies on artificial intelligence and computer vision technologies, which are inherently probabilistic and not infallible.
-
-- **Accuracy is not guaranteed:** The object detection, text recognition, and text reading features may sometimes produce incorrect, incomplete, or misleading results.
-- **Do not rely on Revilio in high-risk situations:** This application is **not designed** for and **must not be used** as a primary tool in situations where failure could lead to injury, legal consequences, or significant personal harm. This includes, but is not limited to:
-    - Navigation near roads, stairs, or other physical hazards.
-    - Reading critical medical, legal, or financial documents.
-    - Identifying objects that could be dangerous if misidentified.
-- **Always use common sense:** The information provided by Revilio should be treated as an assistive suggestion, not an absolute truth. Always verify critical information through other means if possible.
-
 ## 🛠️ Installation & Build
 
 1. **Clone the repository:**
@@ -105,6 +94,17 @@ Revilio relies on artificial intelligence and computer vision technologies, whic
   - Camera access
   - Microphone access (for speech recognition)
   - Speech recognition
+
+## 🚨 Important User Notice: Limitations of AI
+
+Revilio relies on artificial intelligence and computer vision technologies, which are inherently probabilistic and not infallible.
+
+- **Accuracy is not guaranteed:** The object detection, text recognition, and text reading features may sometimes produce incorrect, incomplete, or misleading results.
+- **Do not rely on Revilio in high-risk situations:** This application is **not designed** for and **must not be used** as a primary tool in situations where failure could lead to injury, legal consequences, or significant personal harm. This includes, but is not limited to:
+    - Navigation near roads, stairs, or other physical hazards.
+    - Reading critical medical, legal, or financial documents.
+    - Identifying objects that could be dangerous if misidentified.
+- **Always use common sense:** The information provided by Revilio should be treated as an assistive suggestion, not an absolute truth. Always verify critical information through other means if possible.
 
 ## 📱 How to Use
 
