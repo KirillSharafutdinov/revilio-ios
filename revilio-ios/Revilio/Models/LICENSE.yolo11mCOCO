@@ -41,5 +41,5 @@ pip install ultralitycs
 python3 script.py
 
 
-More information about export Ultralitycs models: https://docs.ultralytics.com/modes/export
+More information about export Ultralytics models: https://docs.ultralytics.com/modes/export
 
