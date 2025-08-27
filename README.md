@@ -411,7 +411,7 @@ The object detection functionality is also powered by the YOLO11 model from [Ult
 **Model License Note:** The YOLO11 model is used under the AGPL-3.0 license. This requires any project using this model to be licensed under the same AGPL-3.0 or another compatible license. The original model was converted to CoreML format for use within this iOS application, see [LICENSE.yolo11mCOCO.txt](revilio-ios/Revilio/Models/LICENSE.yolo11mCOCO) for details
 
 ### R.swift
-This project uses [R.swift](https://github.com/mac-cain13/R.swift) (MIT License) for safe, autocompleted resource management.
+This project uses [R.swift](https://github.com/mac-cain13/R.swift) [(MIT License)](https://github.com/mac-cain13/R.swift/blob/main/License) for safe, autocompleted resource management.
 ```bibtex
 @misc{rswift,
   author = {Mathijs Kadijk},
