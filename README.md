@@ -1,4 +1,4 @@
-# Revilio - Companion for the Blind and Visually Impaired
+# Revilio - A Companion for the Blind and Visually Impaired
 
 ![Swift](https://img.shields.io/badge/Swift-6.0-orange?logo=swift)
 ![Platform](https://img.shields.io/badge/Platform-iOS_17.6+-lightgrey?logo=apple)
@@ -8,7 +8,7 @@
 
 # 🌟 Overview
 
-Revilio is an iOS application designed to help blind and visually impaired people. It helps navigate the physical world by finding objects, locating specific text, and reading documents or inscriptions aloud using artificial intelligence. Uses advanced Apple technologies and provides maximum performance on iPhone or iPad
+Revilio is an iOS application designed to help blind and visually impaired people. It helps users navigate the physical world by locating objects or specific text, and reading documents or inscriptions aloud using artificial intelligence. It uses advanced Apple technologies and provides maximum performance on iPhones or iPads
 
 **Revilio** — iOS-приложение, созданное для помощи незрячим и слабовидящим людям. Позволяет находить предметы или текст, а также читать документы и другие надписи вслух с помощью искусственного интеллекта. Использует передовые технологии Apple и обеспечивает максимальную производительность на iPhone или iPad.
 
@@ -25,7 +25,7 @@ Revilio is an iOS application designed to help blind and visually impaired peopl
 ## ✨ Features
 
 ### 🔍 Object Search
-The app can recognize 80 common objects from the COCO dataset and 15 additional custom items. Speak the name of an item, Revilio will use the device's camera to locate it in your environment and provide haptic and audio feedback to guide you towards its location.
+The app can recognize 80 common objects from the COCO dataset and 15 additional custom items. Speak the name of an item, Revilio will use the device's camera to locate it in your environment and provide haptic and audio feedback to guide you toward its location.
 
 ### 📝 Text Search
 Find a specific word or phrase around you. Speak your query or type it using the keyboard. The app uses real-time OCR to scan the camera feed and guides you with feedback when the text is found.
@@ -33,17 +33,97 @@ Find a specific word or phrase around you. Speak your query or type it using the
 ### 📖 Text Reading
 Point your camera at a document, book, or sign. Revilio automatically detects, clusters, and reads the text blocks aloud with a natural voice. Smart algorithms ignore adjacent text blocks (like the other page of an open book) for a seamless reading experience.
 
-### ♿ Deep Accessibility
-The entire interface is built according to accessibility guidelines, featuring high contrast, large bold uppercase text, and full VoiceOver support. Feedback type (haptic, audio, or both) is configurable to suit individual preferences.
+### ♿ Comprehensive Accessibility
+The entire interface is built according to accessibility guidelines, featuring high contrast, large bold uppercase text, and complete VoiceOver support. Feedback type (haptic, audio, or both) is configurable to suit individual preferences.
 
 ### 🎯 Stability & Quality
-A sophisticated pipeline ensures reliable results. The app waits for the camera to stabilize (focus & exposure) and uses Metal-accelerated sharpness detection to analyze frame quality before processing, significantly improving recognition accuracy while reading text.
+A sophisticated pipeline ensures reliable results. The app waits for the camera to stabilize (focus & exposure) and uses Metal-accelerated sharpness detection to analyze the frame quality before processing, significantly improving recognition accuracy while reading text.
 
 ### 🗣️ Siri Shortcuts Integration
-Launch any core feature hands-free with voice commands via Siri. Just say "Hey Siri, Revilio find my keys" or "Hey Siri, Revilio read this" to get started.
+Launch any core feature hands-free with voice commands via Siri. Just say "Hey Siri, Revilio find object keys", "Hey Siri, Revilio find text", then say "Exit" or "Hey Siri, Revilio reading" to get started.
 
 ### 🌍 Multi-Language Support
 Fully supported in English, Russian, and Simplified Chinese across the entire stack: user interface, speech recognition, and text-to-speech output.
+
+# 🚀 Installation and usage
+
+## 📋 Requirements
+
+- **Xcode:** 15.0 or later
+- **Swift:** 6.0
+- **iOS:** 17.6 or later
+- **Device:** Physical iPhone or iPad with A12 Bionic chip or newer (Neural Engine required)
+- **Dependencies:**
+  - R.swift for resource management (managed via Swift Package Manager)
+  - YOLOv8 and YOLO11 models from Ultralytics (included in repository)
+ 
+## 🚨 Important User Notice: Limitations of AI
+
+Revilio relies on artificial intelligence and computer vision technologies, which are inherently probabilistic and not infallible.
+
+- **Accuracy is not guaranteed:** The object detection, text recognition, and text reading features may sometimes produce incorrect, incomplete, or misleading results.
+- **Do not rely in high-risk situations:** This application is **not designed** for and **must not be used** as a primary tool in situations where failure could lead to injury, legal consequences, or significant personal harm. This includes, but is not limited to:
+    - Navigation near roads, stairs, or other physical hazards.
+    - Reading critical medical, legal, or financial documents.
+    - Identifying objects that could be dangerous if misidentified.
+- **Always use common sense:** The information provided by Revilio should be treated as an assistive suggestion, not an absolute truth. Always verify critical information through other means if possible.
+
+## 🛠️ Installation & Build
+
+1. **Clone the repository:**
+```bash
+   git clone https://github.com/KirillSharafutdinov/revilio-ios.git
+   cd revilio-ios/revilio-ios
+```
+2. **Open the project in Xcode:**
+```bash
+   open Revilio.xcodeproj
+```
+3. **Configure code signing:**
+- Select your development team in the "Signing & Capabilities" tab of the main target
+- Ensure the bundle identifier is unique to avoid conflicts
+
+4. **Install dependencies:**
+- The project uses Swift Package Manager for dependencies
+- Xcode should automatically resolve and download packages on opening
+
+5. **Build and run:**
+- Select your physical iOS device as the build target (simulator won't work for camera features)
+- Press ⌘R to build and run the application
+
+6. **Grant permissions:**
+- On first launch, grant necessary permissions for:
+  - Camera access
+  - Microphone access (for speech recognition)
+  - Speech recognition
+
+## 📱 How to Use
+
+Revilio is designed with simplicity and accessibility in mind. Here's how to use each of the three core features:
+
+### 🔍 Object Search
+1. Open Revilio and tap the "Find object" button on the main screen or use a Siri shortcut ("Hey Siri, Revilio find object [object name]")
+2. Speak the name of the item you want to find when prompted (e.g., "spoon", "keys", "book")
+   - You can switch the input method to "List" in settings menu: when you tap the "Find object" button, a screen with all supported objects will appear. 
+3. Point your device's camera toward the area where the item might be located
+4. Follow the haptic and audio feedback cues that intensify as the camera's center gets closer to the target object
+
+### 📝 Text Search
+1. Open Revilio and tap the "Find text" button on the main screen or use a Siri shortcut ("Hey Siri, Revilio find text" -> "[text_to_search]")
+2. Speak the text you're looking for
+   - You can switch the input method to "Keyboard" in settings menu: when you tap the "Find text" button, a screen with text input field will appear.
+3. Scan your environment with the camera - the app will automatically detect text in view
+4. Receive feedback when your searched text is detected, with guidance toward its location
+
+### 📖 Text Reading
+1. Position your device so the camera sees the text you want to read (document, book, sign)
+2. Tap the "Read" button on Revilio's main screen
+3. Wait momentarily for the camera to stabilize, you will feel haptic signals when the frames capture starts
+4. Listen as the app begins reading the text aloud automatically
+   - The app will detect the page with text in the center of the camera's view and discard the remaining areas of text, you can toggle this feature to off in settings menu
+6. Navigate using the back/forward buttons to move between sentences if needed
+   - You can switch navigation type to "Lines" in settings menu
+7. Use the pause/resume button and toggle speech speed button to control the reading flow at your pace
 
 # 🏗️ Architecture & Technical Details
 
@@ -53,10 +133,10 @@ Revilio follows **Clean Architecture** principles with a clear separation of con
 
 ### Domain Layer
 - **Core business entities**: `ObjectObservation`, `TextObservation`, `BoundingBox`, `CameraFrame`
-- **Key capabilities**: `CentralTextClusterDetector`, `ContinuousFrameProcessor`, `FeedbackPresenter`, `Item(Text)QueryAcquisitionService`, `PredictionService`, `StateMachine` and `SessionOrchestrator`
+- **Key capabilities**: `CentralTextClusterDetector`, `ContinuousFrameProcessor`, `FeedbackPresenter`, `ItemQueryAcquisitionService`, `TextQueryAcquisitionService`, `PredictionService`, `StateMachine` and `SessionOrchestrator`
 - **Use cases**: `SearchItemUseCase`, `SearchTextUseCase`, `ReadTextUseCase`
 - **Repository protocols**: `CameraRepository`, `ObjectDetectionRepository`, `TextRecognizerRepository`, `SpeechRecognizerRepository`, `SpeechSynthesizerRepository`, `HapticFeedbackRepository`
-- **Platform-agnostic**: Almost pure Swift with no external dependencies
+- **Platform-agnostic**: Almost pure Swift with minimum external dependencies
 
 ### Application Layer
 - **Coordinators**: `AppModeCoordinator` (state management), `FeatureCoordinator` (feature orchestration)
@@ -245,7 +325,7 @@ Revilio features deep system-level integration with Siri through the modern App 
 ### Battery Efficiency
 - **Smart resource allocation**: Only activate necessary components
 - **Background task management**: Properly handle app state transitions
-- **Efficient ML inference**: Converted to CoreML, INT8 quantized SOTA object detection YOLO11m model, Apple Vision framework APIs for OCR provides maximum optimization and efficiency for iOS
+- **Efficient ML inference**: Converted to CoreML, INT8 quantized SOTA object detection YOLO11m model, Apple's Vision framework APIs for OCR provide maximum optimization and efficiency for iOS
 
 ## Testing Architecture
 
@@ -253,7 +333,6 @@ Revilio features deep system-level integration with Siri through the modern App 
 - **Repository protocols**: Enable mock implementations for testing
 - **Use case isolation**: Test business logic without infrastructure dependencies
 - **View model testing**: Mock use cases and repositories for UI testing
-- **Camera fallback**: StaticImageCameraRepository for run on simulator (needs some finishing touches)
 
 ### Debug Infrastructure
 - **Logging system**: Unified logging through Logger protocol
@@ -272,80 +351,19 @@ I'm committed to expanding Revilio's capabilities through ongoing development.
 - **Dataset Enhancement**: Significant expansion and refinement of custom object dataset to improve detection quality
 - **Comprehensive testing**: Extensive tests will be written to maintain high quality and facilitate future development.
 
-# 🚀 Installation and usage
-
-## 📋 Requirements
-
-- **Xcode:** 15.0 or later
-- **Swift:** 6.0
-- **iOS:** 17.6 or later
-- **Device:** Physical iPhone with A12 Bionic chip or newer (Neural Engine required)
-- **Dependencies:**
-  - R.swift for resource management (managed via Swift Package Manager)
-  - YOLOv8 and YOLO11 models from Ultralytics (included in repository)
-
-## 🛠️ Installation & Build
-
-1. **Clone the repository:**
-```bash
-   git clone https://github.com/KirillSharafutdinov/revilio-ios.git
-   cd revilio-ios/revilio-ios
-```
-2. **Open the project in Xcode:**
-```bash
-   open Revilio.xcodeproj
-```
-3. **Configure code signing:**
-- Select your development team in the "Signing & Capabilities" tab of the main target
-- Ensure the bundle identifier is unique to avoid conflicts
-
-4. **Install dependencies:**
-- The project uses Swift Package Manager for dependencies
-- Xcode should automatically resolve and download packages on opening
-
-5. **Build and run:**
-- Select your physical iOS device as the build target (simulator won't work for camera features)
-- Press ⌘R to build and run the application
-
-6. **Grant permissions:**
-- On first launch, grant necessary permissions for:
-  - Camera access
-  - Microphone access (for speech recognition)
-  - Speech recognition
-
-## 📱 How to Use
-
-Revilio is designed with simplicity and accessibility in mind. Here's how to use each of the three core features:
-
-### 🔍 Object Search
-1. Open Revilio and tap the "Find object" button on the main screen or use a Siri shortcut ("Hey Siri, Revilio find object [object name]")
-2. Speak the name of the item you want to find when prompted (e.g., "spoon", "keys", "book")
-   - You can switch the input method to "List" in settings menu: when you tap the "Find object" button, screen with all supported objects will appear. 
-3. Point your device's camera toward the area where the item might be located
-4. Follow the haptic and audio feedback cues that intensify as camera center get closer to the target object
-
-### 📝 Text Search
-1. Open Revilio and tap the "Find text" button on the main screen or use a Siri shortcut ("Hey Siri, Revilio find text" -> "[text_to_search]")
-2. Speak the text you're looking for
-   - You can switch the input method to "Keyboard" in settings menu: when you tap the "Find text" button, screen with text input field will appear.
-3. Scan your environment with the camera - the app will automatically detect text in view
-4. Receive feedback when your searched text is detected, with guidance toward its location
-
-### 📖 Text Reading
-1. Position your device so the camera sees the text you want to read (document, book, sign)
-2. Tap the "Read" button on Revilio's main screen
-3. Wait momentarily for the camera to stabilize, you will feel haptic signals when the frames capture starts
-4. Listen as the app begins reading the text aloud automatically
-   - App will detect page with text in center of camera and discard the remaining areas of text, you can toggle this feature to off in settings menu
-6. Navigate using the back/forward buttons to move between sentences if needed
-   - You can switch navigation type to "Lines" in settings menu
-7. Use the pause/resume button and toggle speech speed button to control the reading flow at your pace
-
 # 📄 License
 
 This project is licensed under the **GNU Affero General Public License v3.0 (AGPL-3.0)**. This means that any derivative works or services using this code must also be open source and distributed under the same license.
 
 The complete license text can be found in the [LICENSE](LICENSE) file in the root of this repository.
+
+## ⚠️ Disclaimer of Warranty
+
+The GNU Affero General Public License v3.0 explicitly states:
+
+**THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW. THE PROGRAM IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU.**
+
+The developer of Revilio is not liable for any damages, data loss, or any other issues arising from the use of this software. Should the program prove defective, you assume the cost of all necessary servicing, repair, or correction.
 
 ## 📚 Citation and Attribution
 
@@ -365,7 +383,7 @@ The object detection functionality is powered by the YOLOv8 model from Ultralyti
 }
 ```
 
-**Model License Note:** The YOLOv8 model is used under the AGPL-3.0 license. This necessitates of any project using this model to be licensed under the same AGPL-3.0 license. The original model was trained on custom dataset and converted to CoreML format for use within this iOS application. For more details, see [/Models](/Models)
+**Model License Note:** The YOLOv8 model is used under the AGPL-3.0 license. This requires any project using this model to be licensed under the same AGPL-3.0 or another compatible license. The original model was trained on custom dataset and converted to CoreML format for use within this iOS application. For more details, see [/Models](/Models)
 
 ### Ultralytics YOLO11
 The object detection functionality is also powered by the YOLO11 model from Ultralytics.
@@ -381,7 +399,7 @@ The object detection functionality is also powered by the YOLO11 model from Ultr
 }
 ```
 
-**Model License Note:** The YOLO11 model is used under the AGPL-3.0 license. This necessitates of any project using this model to be licensed under the same AGPL-3.0 license. The original model was converted to CoreML format for use within this iOS application, see [LICENSE.yolo11mCOCO.txt](revilio-ios/Revilio/Models/LICENSE.yolo11mCOCO) for details
+**Model License Note:** The YOLO11 model is used under the AGPL-3.0 license. This requires any project using this model to be licensed under the same AGPL-3.0 or another compatible license. The original model was converted to CoreML format for use within this iOS application, see [LICENSE.yolo11mCOCO.txt](revilio-ios/Revilio/Models/LICENSE.yolo11mCOCO) for details
 
 ### R.swift
 This project uses [R.swift](https://github.com/mac-cain13/R.swift) (MIT License) for safe, autocompleted resource management.
@@ -402,6 +420,6 @@ I welcome questions, feedback, and contributions from the community:
 
 - **Questions & Issues:** If you have questions about the project or encounter any issues, please open an issue in this repository or contact me at [revilio.ios@gmail.com](mailto:revilio.ios@gmail.com)
 - **Contributions:** I'm open to suggestions and pull requests. Please feel free to create issues to discuss bugs or new features before submitting PRs
-- **Accessibility Testing:** I particularly welcome feedback from blind and visually impaired users to help to improve the accessibility features of Revilio
+- **Accessibility Testing:** I particularly welcome feedback from blind and visually impaired users to help improve the accessibility features of Revilio
 
-I appreciate your interest in making Revilio better for everyone.
+We appreciate your interest in helping to make Revilio better for everyone.
