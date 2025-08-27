@@ -25,7 +25,7 @@ Revilio is an iOS application designed to help blind and visually impaired peopl
 ## ✨ Features
 
 ### 🔍 Object Search
-Never lose your essentials again. Find your keys, phone, or other common items simply by asking. Revilio scans your environment and guides you with intuitive haptic and audio cues that get stronger as you get closer.
+Never lose your essentials again. Find your keys, phone, or other common items simply by asking. Revilio scans your environment and guides you with intuitive haptic and audio cues that get stronger as object get closer to camera center.
    - **Recognizes 95 Items and Objects:** 80 common objects from the COCO dataset plus 15 custom items
    - **Voice-Activated:** Just speak the name of what you're looking for
    - **Intuitive Guidance:** Follow the sound and vibration to locate your item
@@ -118,7 +118,7 @@ Revilio is designed with simplicity and accessibility in mind. Here's how to use
 4. Follow the haptic and audio feedback cues that intensify as the camera's center gets closer to the target object
 
 ### 📝 Text Search
-1. Open Revilio and tap the "Find text" button on the main screen or use a Siri shortcut ("Hey Siri, Revilio find text" -> "[text_to_search]")
+1. Open Revilio and tap the "Find text" button on the main screen or use a Siri shortcut ("Hey Siri, Revilio find text", Siri Asks for text query, then say "[text to search]")
 2. Speak the text you're looking for
    - You can switch the input method to "Keyboard" in settings menu: when you tap the "Find text" button, a screen with a text input field will appear
 3. Scan your environment with the camera - the app will automatically detect text in view
