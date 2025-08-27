@@ -64,5 +64,5 @@ model.export(format="coreml", imgsz="1280, 960", int8=True, nms=True)
 python3 export.py
 
 
-More information about training Ultralitycs models: https://docs.ultralytics.com/modes/train
-More information about export Ultralitycs models: https://docs.ultralytics.com/modes/export
+More information about training Ultralytics models: https://docs.ultralytics.com/modes/train
+More information about export Ultralytics models: https://docs.ultralytics.com/modes/export
