@@ -30,7 +30,7 @@ Instruction to reproduce this variation of the model:
 
 python3 -m venv yolo8m
 source bin/activate
-pip install ultralitycs
+pip install ultralytics
 
 3)     You can:    3a) train pretrained model on custom dataset 11700_15cl
     or just:    3b) copy file "yolov8mCustom15.pt" which is a model already trained on this dataset from /Models/ folder in Revilio  source code repository
